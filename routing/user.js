@@ -24,6 +24,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.post('/confirmation', confirmationPost);
 app.post('/resend', resendTokenPost);
 
+app.get('/confirmation/:token',confirmationPost, (req, res) =>{
+  res.redirect("/login-user")
+  });
 
 // Login Page
 app.get('/login-user',forwardAuthenticated, (req, res) =>{
