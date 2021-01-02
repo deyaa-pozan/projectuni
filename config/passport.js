@@ -21,7 +21,7 @@ module.exports = function(passport) {
           if (err) throw err;
           if (isMatch) {
             if (!user.isVerified) return done(null, false, { message: 'Your account has not been verified.' });
-            res.send({ token: generateToken(user), user: user.toJSON() });
+            
             return done(null, user);
           } else {
             
