@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm_v1 by Colorlib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fontsu/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="cssu/style.css">
+	</head>
+
+	<body>
+
+		
+			<div class="inner">
+				<div class="image-holder">
+					<img src="/imagesu/im2.jpg" alt="">
+				</div>
+				
+
+				<form action="register-user" method="POST">
+					<%- include('partials/messages'); -%>
+					<h3>Registration Form</h3>
+				
+					<div class="form-wrapper">
+						<input type="text" placeholder="Username" name="username" class="form-control" value="<%= typeof username != 'undefined' ? username : '' %>"
+						>
+						<i class="zmdi zmdi-account"></i>
+					</div>
+					<div class="form-wrapper">
+						<input type="email" placeholder="Email Address" name="email" class="form-control"  value="<%= typeof email != 'undefined' ? email : '' %>">
+						<i class="zmdi zmdi-email"></i>
+					</div>
+					
+					<div class="form-wrapper">
+						<input type="password" placeholder="Password" name="password" class="form-control"value="<%= typeof password != 'undefined' ? password : '' %>">
+						<i class="zmdi zmdi-lock"></i>
+					</div>
+					<div class="form-wrapper">
+						<input type="password" placeholder="Confirm Password" name="passwordcheck" class="form-control"value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
+						<i class="zmdi zmdi-lock"></i>
+					</div>
+					<button>Register
+						<i class="zmdi zmdi-arrow-right"></i>
+					</button>
+				</form>
+			</div>
+		
+		
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

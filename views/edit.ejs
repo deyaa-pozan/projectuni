@@ -1,0 +1,141 @@
+
+    <%- include('partials/header'); -%>
+    <div class="col-lg-12">
+                                    <div style = "margin-top:100px" class="card">
+                                        <div class="card-header">
+                                            <strong>add new product</strong> 
+                                        </div>
+                                        <div class="card-body ">
+                                            <form action="/edit/<%=decs._id%>" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label class=" form-control-label">Static</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <p class="form-control-static">Username admin</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="caption" class=" form-control-label"> Input caption</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" id="caption" name="caption1" placeholder="Text" class="form-control" value =" <%=decs.captiond%>">
+                                                        <small class="form-text text-muted">This is a help text</small>
+                                                    </div>
+                                                </div>
+                                              <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="text-input" class=" form-control-label"> price</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input value =" <%=decs.priced%>" type="text" id="price" name="price" placeholder="$0" class="form-control" >
+                                                        <small class="form-text text-muted"></small>
+                                                    </div>
+                                                </div>
+                                              <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="barcode" class=" form-control-label"> barcode</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input value =" <%=decs._id%>" type="text" id="barcode" name="barcode" placeholder="|bar|code|" class="form-control">
+                                                        <small class="form-text text-muted"></small>
+                                                    </div>
+                                                </div>
+                                              <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="stored" class=" form-control-label"> stored</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input value =" <%=decs.stored%>" type="text" id="stored" name="stored" placeholder="stored" class="form-control">
+                                                        <small class="form-text text-muted"></small>
+                                                    </div>
+                                                </div>
+                                              
+                                                
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="textarea-input" class="form-control-label">Input description</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input value =" <%=decs.descriptiond%>" name="description" id="descriptiont" placeholder="Content..." class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="select" class=" form-control-label">Product department</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <select name="select" id="select" class="form-control">
+                                                            <option value="<%=decs.departmentd%>"><%=decs.departmentd%></option>
+                                                            <option value="Super Market">Super Market</option>
+                                                            <option value="Drinks">Drinks</option>
+                                                            <option value="Vegetables and fruits">Vegetables and fruits</option>
+                                                            <option value="Cleaning products">Cleaning products</option>
+                                                            <option value="meat">meat</option>
+                                                            <option value="Dairy">Dairy</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="im" class=" form-control-label">Multiple File input</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="file" id="im" name="im" class="form-control-file "  accept="image/png, image/jpeg" multiple >
+                                                    </div>
+                                                </div>
+
+                                                <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-dot-circle-o"></i> Edit 
+
+                                            </button>
+                                            <button type="reset" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-ban"></i> Reset
+                                            </button>
+                                        </div>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
+
+                                  <!-- Jquery JS-->
+        <script src="/vendor/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+        <!-- Vendor JS       -->
+        <script src="/vendor/slick/slick.min.js">
+        </script>
+        <script src="/vendor/wow/wow.min.js"></script>
+        <script src="/vendor/animsition/animsition.min.js"></script>
+        <script src="/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        </script>
+        <script src="/vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="/vendor/counter-up/jquery.counterup.min.js">
+        </script>
+        <script src="/vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="/vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="/vendor/select2/select2.min.js">
+        </script>
+
+        <!-- Main JS-->
+        <script src="/js/main.js"></script>
+
+    </body>
+
+    </html>
