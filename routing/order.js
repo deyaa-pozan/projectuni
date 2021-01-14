@@ -27,10 +27,10 @@ app.post("/send" , function(req,res){
  var numphone = req.body.numphone;
  var note = req.body.note ;
  var cart = req.session.cart;
- var x =0;
+ var total =0;
  cart.forEach(function(product){ 
  
- x = (product.price*product.qy)+x
+ total = (product.price*product.qy)+total
   });
 
 
@@ -40,30 +40,37 @@ app.post("/send" , function(req,res){
     address : address,
     numphone : numphone,
     note :note ,
-    total :x,
+    total :total,
     date:new Date(),
     product : req.session.cart
 
 });
 newOrder.save(function(error){
   if(!error){
-   
     console.log(fullName)
-
-  }
-  else{
+  }else{
     console.log(error)
-    
-
   }
-
 });
 var c =req.session.cart;
 var arr=[];
 c.forEach(element => {
-  
+  product.findById(element.barcode,function(err,pro){
+    if (!err) {
+     pro.stored = pro.stored - element.qy;
+     pro.countshop = pro.countshop + element.qy;
+     pro.save(function(error){
+       if (error)
+       {
+          console.log(error);
+       }
+     });
+    }
 
-arr.push(element.barcode)
+
+  });
+
+ arr.push(element.barcode)
 
 
 });
@@ -85,23 +92,7 @@ req.session.cart=[];
 res.redirect("/");
  });
 
-    // user.find({username:"maher"} , function(error,result){
-        
-        
-    //        var a = result[0].productitem;
-     
-    //     a.forEach(element2 => {
-    //        if (element2.price=="0.35") {
-    //            console.log(element2)
-
-    //        }
-    //     });
-    //     product.findById{itemprodct[0]}
-        
-        
-       
-      
-    // });
+   
         
 
 module.exports = app ;

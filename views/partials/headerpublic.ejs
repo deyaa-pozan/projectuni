@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>scan Market</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <h1><%= locals.total%></h1>
+    
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -40,8 +40,8 @@
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <%if(typeof locals.cartlength1 !== "undefined"){%>
-                    <div class="header__cart__price">item: <span>$ 1</span></div>
+                <%if(typeof cartlength1 != ""){%>
+                    <div class="header__cart__price">item: <span>$<>></span></div>
                     <% } else {%>
                      <div class="header__cart__price">item: <span>$ 0</span></div>
      
@@ -70,19 +70,19 @@
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="/">Shop</a></li>
-                <li><a href="#">Pages</a>
+            <ul class="list1">
+                <li class="active select_active"><a href="/">Home</a></li>
+                <li><a class="select_active" href="/">Shop</a></li>
+                <li><a class="select_active" href="#">Pages</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="/shop-details">Shop Details</a></li>
+                        
                         <li><a href="/shoping-cart">Shoping Cart</a></li>
                         <li><a href="/checkout">Check Out</a></li>
                         <li><a href="/blog-details">Blog Details</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a class="select_active" href="/blog">Blog</a></li>
+                <li><a class="select_active" href="/contact">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -94,7 +94,11 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <%if(typeof userhedar !=="undefined" ){%>
+                <li><i class="fa fa-envelope"></i> <%=userhedar%></li>
+                <% }else{ %>
+                    <li><i class="fa fa-envelope"></i> you not Login</li>
+                    <% } %>
                 <li>Free Shipping for all Order of $99</li>
             </ul>
         </div>
@@ -109,7 +113,11 @@
                     <div class="col-lg-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <%if(typeof userhedar !== "undefined" ){%>
+                                    <li><i class="fa fa-envelope"></i> <%=userhedar%></li>
+                                    <%}else{%>
+                                        <li><i class="fa fa-envelope"></i> you not Login</li>
+                                        <%}%>
                                 <li>Free Shipping for all Order of $99</li>
                             </ul>
                         </div>
@@ -127,12 +135,25 @@
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">Arabic</a></li>
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                            <div class="header__top__right__auth ">
+                                <div class="header__top__left ">
+                                    <ul>
+                                        <%if(typeof userhedar !=="undefined" ){%>
+                                            <a href="/logout-user"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+                                        <% }else{ %>
+                                            <li><a href="/login-user"><i class="fa fa-user"></i> Login</a></li>
+                                            <li><a href="/register-user"><i class="fa fa-registered"></i> Register</a></li>
+
+                                            <% } %>
+                                        
+                                    </ul>
+                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -148,27 +169,30 @@
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li class="active"><a href="#">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="/shop-details">Shop Details</a></li>
+                        <ul class="select1" id="myTab">
+                            <li><a class="select_active" id="home" href="/">Home</a></li>
+                            <li class="active select_active"><a id="shop" href="#">Shop</a></li>
+                            <li><a  class="select_active" href="#">Pages</a>
+                                <ul  class="header__menu__dropdown">
+                                    
                                     <li><a href="/shoping-cart">Shoping Cart</a></li>
                                     <li><a href="/checkout">Check Out</a></li>
                                     <li><a href="/blog-details">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a id="blog" class="select_active" href="/blog">Blog</a></li>
+                            <li><a id="contact" class="select_active" href="/contact">Contact</a></li>
                         </ul>
+                        
                     </nav>
                 </div>
+               
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <%if(typeof cartlength1 !== "undefined"){%>
+                            <li><a href="#" data-toggle="modal" data-target="#heart"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <%if( typeof cartlength1 !== "undefined"){%>
+                               
                             <li><a href="/shoping-cart"><i class="fa fa-shopping-bag"></i> <span><%=cartlength1%></span></a></li>
                             <% } else {%>
                                 <li><a href="/shoping-cart"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
@@ -230,7 +254,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>0799999999</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
@@ -239,4 +263,5 @@
             </div>
         </div>
     </section>
+    <div class="tab-content">
     <!-- Hero Section End -->

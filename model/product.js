@@ -9,7 +9,11 @@ const productschema = new mongoose.Schema({
 	stored : String,
 	countshop : Number,
 	review : Number,
-	img:  [String] 
+	img:  [String] ,
+	date: {
+        type: Date,
+        default: Date.now
+      }
     
         
         

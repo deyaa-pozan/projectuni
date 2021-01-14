@@ -63,12 +63,13 @@ module.exports = function(passport) {
     
     switch (obj.type) {
       case 'admin':
-        console.log("ok admin");
+        
           admin.findOne({email:obj.email})
               .then(device => {
                   if (device) {
                       done(null, device);
                   } else {
+                    
                       done(new Error('device email not found:' + obj.email, null));
                   }
               });

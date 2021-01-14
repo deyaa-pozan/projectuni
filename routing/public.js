@@ -1,5 +1,6 @@
 const express = require("express");
 const admin = require("../model/admin");
+const subscribe = require("../model/subscribe");
 const user = require("../model/user");
 const _ = require("lodash");
 const bodyParser = require("body-parser");
@@ -19,24 +20,53 @@ app.use(bodyParser.json())
 
   
 app.get("/",function(req,res){
+ 
   product.find().countDocuments(function (err, count) {
     product.find({},function(err,found){
-      res.render("indexpublic",{count:count , found:found, lastseen:req.session.lastseen});
-     
- 
-       
-      
+       product.find({}).sort({"countshop" : -1}).limit(9).exec(function(err, Top){
+        product.find({}).sort({"date" : -1}).limit(9).exec(function(err, latest){
+          
+          res.render("indexpublic",{count:count , found:found, lastseen:req.session.lastseen,topsale:Top,latest:latest,heart:req.session.heart});
+
+        });
+      });
     });
- 
+  });
 });
- });
+
  app.get("/",function(req,res){
   res.send("headerpublic", {cart:req.session.cart});
   
  });
  app.get("/blog-details",function(req,res){
+  
   res.render("blog-details");
 
+ });
+
+ app.post("/subscribeform",function(req,res){
+  const emailsubscribe = req.body.email;
+  subscribe.findOne({ email: emailsubscribe }).then(usersubscribe => {
+    if (!usersubscribe) {
+      
+    
+ const newsubscribe = new subscribe({
+   email:emailsubscribe
+
+ });
+ newsubscribe.save(function(err){
+  if (err) {
+      console.log(err)
+  }else{
+      res.redirect("/")
+  }
+
+  });
+  }else{
+    res.redirect("/")
+  }
+
+});
  });
  
  app.get("/blog",function(req,res){
@@ -128,9 +158,48 @@ app.get("/",function(req,res){
    });
   });
   });
-  
+  app.get('/addheart/:product', function(req, res){
+    product.findOne({_id:req.params.product} ,function(err ,p){
+      if(err){
+        console.log(err);
+        res.redirect("/")
+      }
+      if(typeof req.session.heart == "undefined"){
+        req.session.heart = [];
+        req.session.heart.push({
+        barcode : p._id,
+      caption : p.captiond,
+      image:p.img[0]
+      
+        });
+      }else{
+        var heart = req.session.heart;
+        var newitem = true;
+        for (var i = 0; i < heart.length; i++) {
+          if (heart[i].barcode == req.params.product) {
+            newitem = false
+            break;
+          }
+          
+        }
+        if (newitem) {
+          
+          heart.push({
+            barcode : p._id,
+            caption : p.captiond,
+            image:p.img[0]
+              });
+        } 
+      }
+      console.log(req.session.heart);
+      res.redirect("/")
+    });
+
+  });
+
   app.get('/add/:product', function(req, res){
     total = 0;
+    cartlength1 = 0;
     product.findOne({_id:req.params.product} ,function(err ,p){
 if(err){
   console.log(err);
@@ -176,11 +245,12 @@ cart = req.session.cart;
   var qty =product.qy * product.price ;
   total = qty+total;
    });
+cartlength1 = req.session.cart.length;
+
 res.locals.total = total;
-res.locals.cartlength1 = req.session.cart.length;
-console.log(res.locals.total + "gg")
-console.log(res.locals.cartlength1+"uyuy")
-var w = req.session.cart.length;
+
+
+
 
 res.redirect("/")
 
@@ -203,7 +273,8 @@ res.redirect("/")
     cart.forEach(function(item){
       i++;
       if (item.barcode===req.params.item) {
-        res.locals.total  =  res.locals.total - parseFloat(item.price).toFixed(2);
+      total  =  total- parseFloat(item.price).toFixed(2);
+      cartlength1-- ;
         cart.splice(i-1, 1);
       }
       

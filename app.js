@@ -78,6 +78,14 @@ app.use(function(req, res, next) {
 app.use(express.static("public"));
 app.use(express.static("uploads"));
 app.use(bodyParser.json())
+app.use(function(req,res, next){
+  if (req.isAuthenticated()) {
+    res.locals.userhedar= req.session.passport.user.email;
+  }
+  res.locals.cartlength1;
+  next();
+  
+  });
 //app.use(fileUpload({ createParentPath: true }));
 
 mongoose.set('useCreateIndex', true);

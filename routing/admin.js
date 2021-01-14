@@ -198,9 +198,27 @@ app.get('/logout', (req, res) => {
            
             });
             app.get("/dashbord",adminensureAuthenticated, function(req,res){
-                    product.find().count(function (err, count) {
-                            res.render("index",{count:count});  
-                        });
+              admin.findOne({ email: req.session.passport.user.email},function(err,adminau){
+     if (err) {
+       console.log(err);
+       res.redirect("/login")
+     }
+     
+                if (adminau ) {
+                  
+                  product.find().count(function (err, count) {
+                    res.render("index",{count:count});  
+                   
+                });
+                }else{
+                  req.flash('error_msg', 'this email no admin');
+                  res.render("login")
+                  
+                 
+                }
+              
+             });
+                    
                 });
                 
               module.exports = app

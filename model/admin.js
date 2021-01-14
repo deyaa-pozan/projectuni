@@ -23,13 +23,9 @@ const adminschema = new mongoose.Schema({
         required: true
       }
 });
-// adminschema.plugin(passportlocalmongoose);
+
 const admin = new mongoose.model("admin" ,adminschema);
 
-// passport.use(admin.createStrategy());
- 
-// passport.serializeUser(admin.serializeUser());
-// passport.deserializeUser(admin.deserializeUser());
 
 
 module.exports = admin

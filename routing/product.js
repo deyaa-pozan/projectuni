@@ -44,8 +44,8 @@ app.get("/addproduct",function(req,res){
   console.log(ar)
   
   const newproduct = new  product({
-    _id:barcode,
-  captiond : caption,
+      _id:barcode,
+      captiond : caption,
       priced:price,
       
       stored :stored ,
