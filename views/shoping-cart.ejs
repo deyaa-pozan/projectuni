@@ -1,6 +1,6 @@
 <%- include('partials/headerpublic'); -%>
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg" >
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -19,122 +19,108 @@
 
     <!-- Shoping Cart Section Begin -->
     <form method="GET" action="/deletepro" id="dele">
-    <section id="change1" class="shoping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__table">
-                        <% if (typeof cart !== "undefined") {%>
-                        <table >
-                            <thead>
-                                <tr>
-                                    <th class="shoping__product">Products</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody  >
-                                <%var x = 0 %>
-                                <% cart.forEach(function(product){ %>
+        <section id="change1" class="shoping-cart spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="shoping__cart__table">
+                            <% if (typeof cart !=="undefined" ) {%>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="shoping__product">Products</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%var x=0 %>
+                                            <% cart.forEach(function(product){ %>
 
-                                <tr id="<%=product.barcode%>">
-                                    <td class="shoping__cart__item">
-                                        <img style="width: 100px; height: 100px;" src="/<%=product.image%>" alt="">
-                                        <h5><%=product.caption%></h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        <%=product.price%>
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="<%=product.qy%>">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <%var qty =product.qy * product.price %>
-                                    
-                                    <% x = qty+x %>
-                                    <td class="shoping__cart__total">
-                                        <%=qty%>
+                                                <tr id="<%=product.barcode%>">
+                                                    <td class="shoping__cart__item">
+                                                        <img style="width: 100px; height: 100px;"
+                                                            src="/<%=product.image%>" alt="">
+                                                        <h5>
+                                                            <%=product.caption%>
+                                                        </h5>
+                                                    </td>
+                                                    <td class="shoping__cart__price">
+                                                        <%=product.price%>
+                                                    </td>
+                                                    <td class="shoping__cart__quantity">
+                                                        <div class="quantity">
+                                                            <div class="pro-qty">
+                                                                <input type="text" value="<%=product.qy%>">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <%var qty=product.qy * product.price %>
 
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><a ><button  class=" btn-danger  fa fa-trash" data-id="<%=product.barcode %>" id="deletep" data-title="Delete" data-toggle="modal" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                                        <% x=qty+x %>
+                                                            <td class="shoping__cart__total">
+                                                                <%=qty%>
 
-                                </tr>
-                                <%});%>
-                                
-                            </tbody>
-                        </table>
-                        <% }else{ %>
-                            <h1>no Item checkout</h1>
-                          <% } %>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__btns">
-                        <a href="/" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="/delete-cart" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Delete Cart</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="shoping__continue">
-                        <div class="shoping__discount">
-                            <h5>Discount Codes</h5>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your coupon code">
-                                <button type="submit" class="site-btn">APPLY COUPON</button>
-                            </form>
+                                                            </td>
+                                                            <td class="shoping__cart__item__close">
+                                                                <span class="icon_close"></span>
+                                                            </td>
+                                                            <td>
+                                                                <p data-placement="top" data-toggle="tooltip"
+                                                                    title="Delete"><a><button
+                                                                            class=" btn-danger  fa fa-trash"
+                                                                            data-id="<%=product.barcode %>" id="deletep"
+                                                                            data-title="Delete"
+                                                                            data-toggle="modal"><span
+                                                                                class="glyphicon glyphicon-trash"></span></button>
+                                                                </p>
+                                                            </td>
+                                                </tr>
+                                                <%});%>
+                                    </tbody>
+                                </table>
+                                <% }else{ %>
+                                    <h1>no Item checkout</h1>
+                                    <% } %>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="shoping__checkout">
-                        <h5>Cart Total</h5>
-                        <ul id="ch">
-                            <li>Subtotal <span >$<%=x%></span></li>
-                            <li>Total <span >$<%=x%></span></li>
-                        </ul>
-                        <a href="/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="shoping__cart__btns">
+                            <a href="/" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                            <a href="/delete-cart" class="primary-btn cart-btn cart-btn-right"><span
+                                    class="icon_loading"></span>
+                                Delete Cart</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="shoping__continue">
+                            <div class="shoping__discount">
+                                <h5>Discount Codes</h5>
+                                <form action="#">
+                                    <input type="text" placeholder="Enter your coupon code">
+                                    <button type="submit" class="site-btn">APPLY COUPON</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="shoping__checkout">
+                            <h5>Cart Total</h5>
+                            <ul id="ch">
+                                <li>Subtotal <span>$<%=x%></span></li>
+                                <li>Total <span>$<%=x%></span></li>
+                            </ul>
+                            <a href="/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</form>
+        </section>
+    </form>
     <!-- Shoping Cart Section End -->
 
     <%- include('partials/footerpublic'); -%>
-    <script>
-        jQuery(document).ready(function($){
-        $(document).on('click','#deletep',function(e){
-            
-     e.preventDefault();
-     const id = $(this).data('id');
-     
-     
-     console.log(id)
-      $.ajax({
-           method: "GET",
-           data: {id:id},
-           url: '/delete-item/'+id, 
-           success: function(data) {
-               $("#"+id).remove()
-
-        } 
-
-       });
-       
-     });
-      
-
-    });
-     </script>

@@ -4,12 +4,14 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
-                    <div class="footer__about__logo">
-                        <a href="/"><img src="img/logo.png" alt=""></a>
+                    <div class="logo  rounded text-center mb-5 ">
+                        <a href="/" class="ml-5 ">
+                            <h4><span class="font-weight-bold h1 " style="color: #7fad39;">Scan</span>Market</h4>
+                        </a>
                     </div>
                     <ul>
                         <li>Address: Jordan, Amman , mokablin</li>
-                        <li>Phone: 0799999999</li>
+                        <li>Phone: 0797845275</li>
                         <li>Email: scanmarket@scanmarket.com</li>
                     </ul>
                 </div>
@@ -18,9 +20,9 @@
                 <div class="footer__widget">
                     <h6>Useful Links</h6>
                     <ul>
-                        <li><a href="#" data-toggle="modal" data-target="#About_Us" >About Us</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#Delivery" >Delivery infomation</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#Policy" >Privacy Policy</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#About_Us">About Us</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#Delivery">Delivery infomation</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#Policy">Privacy Policy</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
@@ -31,15 +33,15 @@
                         integrationID: "a56ce81a-09c6-4e1b-a2fa-5aef4a8f9572", // The ID of this integration.
                         region: "eu-gb", // The region your integration is hosted in.
                         serviceInstanceID: "f706a491-4de2-49d7-962b-865e464f29d5", // The ID of your service instance.
-                        onLoad: function(instance) { instance.render(); }
-                      };
-                    setTimeout(function(){
-                      const t=document.createElement('script');
-                      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
-                      document.head.appendChild(t);
+                        onLoad: function (instance) { instance.render(); }
+                    };
+                    setTimeout(function () {
+                        const t = document.createElement('script');
+                        t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+                        document.head.appendChild(t);
                     });
-                  </script>
-        
+                </script>
+
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
@@ -61,14 +63,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="footer__copyright">
-                    <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This project is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.facebook.com/deayaa.pozan.7" target="_blank">deyaa pozan</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                    <div class="footer__copyright__text">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            project is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                href="https://www.facebook.com/deayaa.pozan.7" target="_blank">deyaa pozan</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
                     <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                 </div>
             </div>
         </div>
-      <%- include('footermodal'); -%>
+        <%- include('footermodal'); -%>
     </div>
 </footer>
 
@@ -83,45 +92,76 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="/js/mixitup.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/mainp.js"></script>
+
+<!-- add to cart jQuery -->
 <script>
-    jQuery(document).ready(function($){
-    $(document).on('click','#add',function(e){
-        
- e.preventDefault();
- const id = $(this).data('id');
- console.log(id)
-  $.ajax({
-       method: "GET",
-       data: id,
-       url: '/add/'+id, 
-       success: function(data) {
-        $("."+id).removeClass('fa fa-shopping-cart ').addClass('fa fa-check');
-         
-  
-    } 
+    jQuery(document).ready(function ($) {
+        $(document).on('click', '#add', function (e) {
 
-   });
-  });
-});
- </script>
-<script>
-
-jQuery(document).ready(function () {
-    $('.select1 li').click(function(e) {
-
-        $('.select1 li').removeClass('active');
-         
-        var $this = $(this);
-        if (!$this.hasClass('active')) {
-            $this.addClass('active');
-        }
-      
+            e.preventDefault();
+            const id = $(this).data('id');
+            $.ajax({
+                method: "GET",
+                data: id,
+                url: '/add/' + id,
+                success: function (data) {
+                    $("." + id).removeClass('fa fa-shopping-cart ').addClass('fa fa-check');
+                }
+            });
+        });
     });
-});
 </script>
-<script>
 
+<!-- heart product jQuery -->
+<script>
+    jQuery(document).ready(function ($) {
+        $(document).on('click', '#heart', function (e) {
+
+            e.preventDefault();
+            const id = $(this).data('id');
+            $.ajax({
+                method: "GET",
+                data: id,
+                url: '/addheart/' + id,
+                success: function (data) {
+                    $("." + id).removeClass('fa fa-heart ').addClass('fa fa-check');
+                }
+            });
+        });
+    });
 </script>
+
+<!-- active select -->
+<script>
+    jQuery(document).ready(function () {
+        $('.select1 li').click(function (e) {
+            $('.select1 li').removeClass('active');
+            var $this = $(this);
+            if (!$this.hasClass('active')) {
+                $this.addClass('active');
+            }
+        });
+    });
+</script>
+
+<!-- delete item in cart session jQuery -->
+<script>
+    jQuery(document).ready(function ($) {
+        $(document).on('click', '#deletep', function (e) {
+            e.preventDefault();
+            const id = $(this).data('id');
+            $.ajax({
+                method: "GET",
+                data: { id: id },
+                url: '/delete-item/' + id,
+                success: function (data) {
+                    $("#" + id).remove()
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>

@@ -1,9 +1,152 @@
+<!-- Jquery JS-->
+<script src="/vendor/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" defer></script>
+<!-- Bootstrap JS-->
+<script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS       -->
+<script src="/vendor/slick/slick.min.js">
+</script>
+<script src="/vendor/wow/wow.min.js"></script>
+<script src="/vendor/animsition/animsition.min.js"></script>
+<script src="/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+</script>
+<script src="/vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="/vendor/counter-up/jquery.counterup.min.js">
+</script>
+<script src="/vendor/circle-progress/circle-progress.min.js"></script>
+<script src="/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="/vendor/select2/select2.min.js">
+</script>
+<!-- Main JS-->
+<script src="/js/main.js"></script>
+<!--Sweetalert JS-->
+<script src="/js/sweetalert.min.js"></script>
 
-</div>
-<div class="footer-padding"></div>
-  <div class="footer">
-    <p>Made with ❤️ by The App Brewery</p>
-  </div>
-</div>
+<!--Product DataTable jQuery -->
+<script>
+  $(document).ready(function () {
+    $('#table_product').DataTable();
+  });
+</script>
+
+<!--Order DataTable jQuery -->
+<script>
+  $(document).ready(function () {
+    $('#table_order').DataTable();
+  });
+</script>
+
+<!--User DataTable jQuery -->
+<script>
+  $(document).ready(function () {
+    $('#table_user').DataTable();
+  });
+</script>
+
+<!--Delete order jQuery -->
+<script>
+  jQuery(document).ready(function ($) {
+    $(document).on('click', '#deleteorder', function (e) {
+      e.preventDefault();
+      const id = $(this).data('id');
+      $.ajax({
+        method: "GET",
+        data: { id: id },
+        url: '/deleteorder/' + id,
+        success: function (data) {
+          $("#" + id).remove()
+        }
+      });
+    });
+  });
+</script>
+
+<!--Delete user jQuery -->
+<script>
+  jQuery(document).ready(function ($) {
+    $(document).on('click', '#deleteuser', function (e) {
+      e.preventDefault();
+      const id = $(this).data('id');
+      $.ajax({
+        method: "GET",
+        data: { id: id },
+        url: '/deleteuser/' + id,
+        success: function (data) {
+          $("#" + id).remove()
+        }
+      });
+    });
+  });
+</script>
+
+<!--Delete admin jQuery -->
+<script>
+  jQuery(document).ready(function ($) {
+    $(document).on('click', '#deleteadmin', function (e) {
+      e.preventDefault();
+      const id = $(this).data('id');
+      $.ajax({
+        method: "GET",
+        data: { id: id },
+        url: '/deleteadmin/' + id,
+        success: function (data) {
+          $("#" + id).remove()
+        }
+      });
+    });
+  });
+</script>
+
+<!--Delete product jQuery -->
+<script>
+  jQuery(document).ready(function ($) {
+    $(document).on('click', '#deleteitem', function (e) {
+      e.preventDefault();
+      const id = $(this).data('id');
+      $.ajax({
+        method: "GET",
+        data: { id: id },
+        url: '/delete/' + id,
+        success: function (data) {
+          $("#" + id).remove()
+        }
+      });
+    });
+  });
+</script>
+
+<!--Delete product jQuery -->
+<!-- <script>
+  jQuery(document).ready(function ($) {
+    $(document).on('click', '.hidebutton', function (e) {
+      e.preventDefault();
+      var id= $(this).attr('id').slice(0, -1);
+      console.log(id+"00000000000");
+      $.ajax({
+        method: "post",
+        data: { id: id },
+        url: '/editrole/' + id,
+        success: function (data) {
+          $("#" + id+"1").hide();
+        }
+      });
+    });
+  });
+</script> -->
+
+<!-- Edit role admin  -->
+<script>
+  jQuery(document).ready(function($){
+    $(document).on('change','#selectrole',function(e){ 
+      e.preventDefault();
+      var id= $(this).attr("name");
+      $("#"+id+"1").show();
+				});
+			});
+</script>
 </body>
+
 </html>

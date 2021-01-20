@@ -20,7 +20,7 @@ module.exports = function(passport) {
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
-            if (!user.isVerified) return done(null, false, { message: 'Your account has not been verified.' });
+            if (!user.isVerified) return done(null, false, { message: 'Your account has not been verified. <a href="'+ "/resend/"+user.email +'">resend</a>'+user.email});
             
             return done(null, user);
           } else {

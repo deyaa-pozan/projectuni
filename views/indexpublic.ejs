@@ -1,333 +1,297 @@
 <%- include('partials/headerpublic'); -%>
 
-<div  id="shophide">
-    <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                    <% for (var i =0; i < count;  i++ ) { %>
-                        <%var s = Math.floor(Math.random() * count) ;%>
-                    
-                    
-                        <div class="col-lg-3">
-                     
-                     
-                        <div class="categories__item set-bg" data-setbg="<%=found[s].img[0]%>">
-                        <h5><a href="/shop-details/<%=found[s]._id%>"><%=found[s].captiond%></a></h5>
-                        </div>
-                        </div>
-                     
-                    
-                    
-                     
-                     
-                      
-                    <% } %>
-                        
-                        
-                     
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Categories Section End -->
+    <div id="shophide">
+        <!-- Categories Section Begin -->
+        <section class="categories">
+            <div class="container">
+                <div class="row">
+                    <div class="categories__slider owl-carousel">
+                        <% for (var i=0; i < count; i++ ) { %>
+                            <%var s=Math.floor(Math.random() * count) ;%>
+                                <div class="col-lg-3">
+                                    <div class="categories__item set-bg" data-setbg="<%=found[s].img[0]%>">
+                                        <h5><a href="/shop-details/<%=found[s]._id%>">
+                                                <%=found[s].captiond%>
+                                            </a></h5>
+                                    </div>
+                                </div>
 
-    <!-- Featured Section Begin -->
-    <section class="featured spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Featured Product</h2>
-                    </div>
-
-                    <div class="featured__controls">
-                        <ul>
-                            <form action="/" method="GET">
-                            <li  name="Dairy" class="active" data-filter="*">All</li>
-                            <li data-filter=".Dairy">   Dairy</li>
-                            <li data-filter=".SuperMarket"> Super Market</li>
-                            <li data-filter=".Drinks">Drinks</li>
-                            <li data-filter=".Vegetablesandfruits">Vegetables and fruits  </li>
-                            <li data-filter=".Cleaningproducts">Cleaning products</li>
-                            <li data-filter=".meat">meat</li>
-                            </form>
-                        </ul>
+                                <% } %>
                     </div>
                 </div>
             </div>
-            <div class="row featured__filter categories__slider owl-carousel ">
-                
-                <% for (var i =0; i < count;  i++ ) { %>
-                    
-                     
-                <div class="col-lg-3 col-md-4 col-sm-6 mix <%=(found[i].departmentd).replace(/\s+/g,'')%> " >
-                   
-                    
-                    <div class="featured__item">
-                         
-                        <div  class="featured__item__pic set-bg" data-setbg="<%=found[i].img[0]%>" >
-                           
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="/addheart/<%=found[i]._id%>" ><i class="fa fa-heart"></i></a></li>
-                                <li><a href="/shop-details/<%=found[i]._id%>"><i class="fa fa-eye"></i></a></li>
-                                <li data-id="<%=found[i]._id %>" id="add"><a href="/add/<%=found[i]._id%>"><i class="fa fa-shopping-cart <%=found[i]._id %>"></i></a></li>
+        </section>
+        <!-- Categories Section End -->
+
+        <!-- Featured Section Begin -->
+        <section class="featured spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>Featured Product</h2>
+                        </div>
+
+                        <div class="featured__controls">
+                            <ul>
+                                <form action="/" method="GET">
+                                    <li name="Dairy" class="active" data-filter="*">All</li>
+                                    <li data-filter=".Dairy"> Dairy</li>
+                                    <li data-filter=".SuperMarket"> Super Market</li>
+                                    <li data-filter=".Drinks">Drinks</li>
+                                    <li data-filter=".Vegetablesandfruits">Vegetables and fruits </li>
+                                    <li data-filter=".Cleaningproducts">Cleaning products</li>
+                                    <li data-filter=".meat">meat</li>
+                                </form>
                             </ul>
                         </div>
-                        
-                        <div class="featured__item__text">
-                            <h6><a href="#"><%=found[i].captiond%></a></h6>
-                            <h5>$<%=found[i].priced%></h5>
+                    </div>
+                </div>
+                <div class="row featured__filter categories__slider owl-carousel ">
+
+                    <% for (var i=0; i < count; i++ ) { %>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix <%=(found[i].departmentd).replace(/\s+/g,'')%> ">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg" data-setbg="<%=found[i].img[0]%>">
+                                    <ul class="featured__item__pic__hover">
+                                        <li><a data-id="<%=found[i]._id %>" id="heart"
+                                                href="/addheart/<%=found[i]._id%>"><i
+                                                    class="fa fa-heart <%=found[i]._id %>"></i></a></li>
+                                        <li><a href="/shop-details/<%=found[i]._id%>"><i class="fa fa-eye"></i></a></li>
+                                        <li data-id="<%=found[i]._id %>" id="add"><a href="/add/<%=found[i]._id%>"><i
+                                                    class="fa fa-shopping-cart <%=found[i]._id %>"></i></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="featured__item__text">
+                                    <h6><a href="#">
+                                            <%=found[i].captiond%>
+                                        </a></h6>
+                                    <%if(found[i].discount!==1){%>
+                                        <h5
+                                            style="text-decoration: line-through; text-decoration-color: red;text-decoration-style: double;">
+                                            <%=(found[i].priced*1).toFixed(2);%>
+                                        </h5>
+                                        <h5>
+                                            <%=(found[i].priced * (1-found[i].discount)).toFixed(2);%>
+                                                <h5 class="text-success">JOD</h5>
+                                        </h5>
+                                        <% }else{ %>
+                                            <h5>
+                                                <%=found[i].priced%>
+                                                    <h5 class="text-success">JOD</h5>
+                                            </h5>
+                                            <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </section>
+        <!-- Featured Section End -->
+
+
+
+        <!-- Latest Product Section Begin -->
+        <section class="latest-product spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="latest-product__text">
+                            <h4>Latest Products</h4>
+                            <%var l=0;%>
+                                <div class="latest-product__slider owl-carousel">
+
+                                    <% for (var j=0; j < 3; j++ ) { %>
+                                        <div class="latest-prdouct__slider__item">
+
+                                            <% for ( var i=0; i < 3 ; i++ ) { %>
+
+                                                <a href="/shop-details/<%=latest[l]._id%>" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="/<%=latest[l].img[0]%>" alt="" style="width:110px">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>
+                                                            <%=latest[l].captiond%>
+                                                        </h6>
+                                                        <span>$<%=latest[l].priced%></span>
+                                                    </div>
+                                                </a>
+                                                <%l++;%>
+                                                    <%}%>
+
+                                        </div>
+                                        <%}%>
+
+                                </div>
                         </div>
                     </div>
-                
-                </div>
-            
-                  
-                <% } %>
-                
-            </div>
-        </div>
-    </section>
-    <!-- Featured Section End -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="latest-product__text">
+                            <% var t=0 ; %>
+                                <h4>Top selling products</h4>
+                                <div class="latest-product__slider owl-carousel">
 
-    <!-- Banner Begin -->
-    <div class="banner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
+                                    <% for (var j=0; j < 3; j++ ) { %>
+
+                                        <div class="latest-prdouct__slider__item">
+
+                                            <% for ( var i=0; i < 3 ; i++ ) { %>
+
+                                                <a href="/shop-details/<%=topsale[t]._id%>"
+                                                    class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="/<%=topsale[t].img[0]%>" alt="" style="width:110px">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>
+                                                            <%=topsale[t].captiond%>
+                                                        </h6>
+                                                        <span>$<%=topsale[t].priced%></span>
+                                                    </div>
+                                                </a>
+                                                <%t++;%>
+                                                    <%}%>
+                                        </div>
+                                        <%}%>
+                                </div>
+                        </div>
+                    </div>
+
+                    <%var i=0;%>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="latest-product__text">
+                                <h4>Last seen</h4>
+
+                                <%if( typeof (lastseen)!="undefined" ){%>
+
+                                    <div class="latest-product__slider owl-carousel">
+
+                                        <% for (var j=0; j <=parseInt(lastseen.length / 2); j++ ) { %>
+
+                                            <div class="latest-prdouct__slider__item">
+
+                                                <% for ( i; i <lastseen.length ; i++ ) { %>
+
+                                                    <%if (i==0) { %>
+                                                        <a href="/shop-details/<%=lastseen[i].barcode%>"
+                                                            class="latest-product__item">
+                                                            <div class="latest-product__item__pic">
+                                                                <img src="/<%=lastseen[0].image%>" alt=""
+                                                                    style="width:110px">
+                                                            </div>
+                                                            <div class="latest-product__item__text">
+                                                                <h6>
+                                                                    <%=lastseen[0].caption%>
+                                                                </h6>
+                                                                <span>$<%=lastseen[0].price%></span>
+                                                            </div>
+                                                        </a>
+
+                                                        <% }else{ %>
+                                                            <a href="/shop-details/<%=lastseen[i].barcode%>"
+                                                                class="latest-product__item">
+                                                                <div class="latest-product__item__pic">
+                                                                    <img src="/<%=lastseen[i].image%>" alt=""
+                                                                        style="width:110px">
+                                                                </div>
+                                                                <div class="latest-product__item__text">
+                                                                    <h6>
+                                                                        <%=lastseen[i].caption%>
+                                                                    </h6>
+                                                                    <span>$<%=lastseen[i].price%></span>
+                                                                </div>
+                                                            </a>
+
+                                                            <%if (i==2) { %>
+                                                                <%i=i+1;%>
+
+                                                                    <% } %>
+                                                                        <%if (i%3==0 ) { %>
+                                                                            <%i=i+1;%>
+                                                                                <%break%>
+                                                                                    <% } %>
+                                                                                        <%}%>
+                                                                                            <%}%>
+
+                                            </div>
+                                            <%}%>
+
+                                    </div>
+                            </div>
+                        </div>
+                        <%}%>
+                </div>
+            </div>
+        </section>
+        <!-- Latest Product Section End -->
+
+        <!-- Blog Section Begin -->
+        <section class="from-blog spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title from-blog__title">
+                            <h2>From The Blog</h2>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic">
+                                <img src="img/blog/blog-1.jpg" alt="">
+                            </div>
+                            <div class="blog__item__text">
+                                <ul>
+                                    <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                                    <li><i class="fa fa-comment-o"></i> 5</li>
+                                </ul>
+                                <h5><a href="#">Cooking tips make cooking simple</a></h5>
+                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic">
+                                <img src="img/blog/blog-2.jpg" alt="">
+                            </div>
+                            <div class="blog__item__text">
+                                <ul>
+                                    <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                                    <li><i class="fa fa-comment-o"></i> 5</li>
+                                </ul>
+                                <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
+                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic">
+                                <img src="img/blog/blog-3.jpg" alt="">
+                            </div>
+                            <div class="blog__item__text">
+                                <ul>
+                                    <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                                    <li><i class="fa fa-comment-o"></i> 5</li>
+                                </ul>
+                                <h5><a href="#">Visit the clean farm in the US</a></h5>
+                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Blog Section End -->
     </div>
-    <!-- Banner End -->
-
-    <!-- Latest Product Section Begin -->
-    <section class="latest-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Latest Products</h4>
-                        <%var l = 0;%>
-                        <div class="latest-product__slider owl-carousel">
-                            
-                            <% for (var j =0; j < 3; j++ ) { %>
-                              
-
-                            <div class="latest-prdouct__slider__item">
-                                
-
-                               
-
-                                <% for ( var i =0; i < 3 ;  i++ ) { %>
-
-                                    
-                                        <a href="/shop-details/<%=latest[l]._id%>" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/<%=latest[l].img[0]%>" alt="" style="width:110px">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6><%=latest[l].captiond%></h6>
-                                                <span>$<%=latest[l].priced%></span>
-                                            </div>
-                                        </a>
-                                        <%l++;%>
-                                        <%}%>
-
-                                
-                                
-
-                            </div>
-                            <%}%>
-
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <% var t = 0 ; %>
-                        <h4>Top selling products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            
-                            <% for (var j =0; j < 3; j++ ) { %>
-                              
-
-                            <div class="latest-prdouct__slider__item">
-                                
-
-                               
-
-                                <% for ( var i =0; i < 3 ;  i++ ) { %>
-
-                                    
-                                        <a href="/shop-details/<%=topsale[t]._id%>" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/<%=topsale[t].img[0]%>" alt="" style="width:110px">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6><%=topsale[t].captiond%></h6>
-                                                <span>$<%=topsale[t].priced%></span>
-                                            </div>
-                                        </a>
-                                        <%t++;%>
-                                        <%}%>
-
-                                
-                                
-
-                            </div>
-                            <%}%>
-
-                            
-                        </div>
-                    </div>
-                </div>
-               
-                    <%var i = 0;%>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        
-                          
-                            
-                        <h4>Last seen</h4>
-
-                        <%if( typeof (lastseen)!= "undefined"){%>
-                    
-                        <div class="latest-product__slider owl-carousel">
-                            
-                            <% for (var j =0; j <=  parseInt(lastseen.length / 2); j++ ) { %>
-                              
-
-                            <div class="latest-prdouct__slider__item">
-                                
-
-                               
-
-                                <% for ( i; i <lastseen.length ;  i++ ) { %>
-
-                                    <%if (i==0) { %>
-                                        <a href="/shop-details/<%=lastseen[i].barcode%>" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/<%=lastseen[0].image%>" alt="" style="width:110px">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6><%=lastseen[0].caption%></h6>
-                                                <span>$<%=lastseen[0].price%></span>
-                                            </div>
-                                        </a>
-                                        
-
-                                    <% }else{ %>
-                                <a href="/shop-details/<%=lastseen[i].barcode%>" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/<%=lastseen[i].image%>" alt="" style="width:110px">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6><%=lastseen[i].caption%></h6>
-                                        <span>$<%=lastseen[i].price%></span>
-                                    </div>
-                                </a>
-
-                                
-                                
-                                <%if (i==2) { %>
-                                    <%i=i+1;%>
-                                    
-
-                                     <% } %>  
-                                 <%if (i%3==0  ) { %>
-                                    <%i=i+1;%>
-                                    <%break%>
-                                    <% } %> 
-                                <%}%>
-                                <%}%>
-
-                            </div>
-                            <%}%>
-
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-                <%}%>
-            </div>
-        </div>
-    </section>
-    <!-- Latest Product Section End -->
-
-    <!-- Blog Section Begin -->
-    <section class="from-blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title from-blog__title">
-                        <h2>From The Blog</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-   
-    <!-- Blog Section End -->
-</div>
     <%- include('partials/footerpublic'); -%>

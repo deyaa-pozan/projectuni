@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>scan Market</title>
+    <title>Scan Market</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -21,11 +21,11 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
-    
+
 </head>
 
 <body>
-    
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -34,27 +34,12 @@
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="/img/logo.png" alt=""></a>
+        <div class="logo  rounded text-center mb-2 ">
+            <a href="/" class="ml-5">
+                <h4 ><span class="font-weight-bold h2 " style="color: #7fad39;">Scan</span>Market</h4>
+            </a>
         </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <%if(typeof cartlength1 != ""){%>
-                    <div class="header__cart__price">item: <span>$<>></span></div>
-                    <% } else {%>
-                     <div class="header__cart__price">item: <span>$ 0</span></div>
-     
-                     <% }%>
-            </ul>
-            
-            <%if(typeof total !== "undefined"){%>
-               <div class="header__cart__price">item: <span>$ <%=total%></span></div>
-               <% } else {%>
-                <div class="header__cart__price">item: <span>$ 0</span></div>
 
-                <% }%>
-        </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
                 <img src="/img/language.png" alt="">
@@ -75,7 +60,7 @@
                 <li><a class="select_active" href="/">Shop</a></li>
                 <li><a class="select_active" href="#">Pages</a>
                     <ul class="header__menu__dropdown">
-                        
+
                         <li><a href="/shoping-cart">Shoping Cart</a></li>
                         <li><a href="/checkout">Check Out</a></li>
                         <li><a href="/blog-details">Blog Details</a></li>
@@ -95,11 +80,13 @@
         <div class="humberger__menu__contact">
             <ul>
                 <%if(typeof userhedar !=="undefined" ){%>
-                <li><i class="fa fa-envelope"></i> <%=userhedar%></li>
-                <% }else{ %>
-                    <li><i class="fa fa-envelope"></i> you not Login</li>
-                    <% } %>
-                <li>Free Shipping for all Order of $99</li>
+                    <li><i class="fa fa-envelope"></i>
+                        <%=userhedar%>
+                    </li>
+                    <% }else{ %>
+                        <li><i class="fa fa-envelope"></i> you not Login</li>
+                        <% } %>
+                            <li>Free Shipping for all Order of JOD 99</li>
             </ul>
         </div>
     </div>
@@ -113,12 +100,14 @@
                     <div class="col-lg-6">
                         <div class="header__top__left">
                             <ul>
-                                <%if(typeof userhedar !== "undefined" ){%>
-                                    <li><i class="fa fa-envelope"></i> <%=userhedar%></li>
+                                <%if(typeof userhedar !=="undefined" ){%>
+                                    <li><i class="fa fa-envelope"></i>
+                                        <%=userhedar%>
+                                    </li>
                                     <%}else{%>
                                         <li><i class="fa fa-envelope"></i> you not Login</li>
                                         <%}%>
-                                <li>Free Shipping for all Order of $99</li>
+                                            <li>Free Shipping for all Order of JOD 99</li>
                             </ul>
                         </div>
                     </div>
@@ -145,15 +134,16 @@
                                         <%if(typeof userhedar !=="undefined" ){%>
                                             <a href="/logout-user"><i class="fas fa-sign-out-alt"></i> Logout</a>
 
-                                        <% }else{ %>
-                                            <li><a href="/login-user"><i class="fa fa-user"></i> Login</a></li>
-                                            <li><a href="/register-user"><i class="fa fa-registered"></i> Register</a></li>
+                                            <% }else{ %>
+                                                <li><a href="/login-user"><i class="fa fa-user"></i> Login</a></li>
+                                                <li><a href="/register-user"><i class="fa fa-registered"></i>
+                                                        Register</a></li>
 
-                                            <% } %>
-                                        
+                                                <% } %>
+
                                     </ul>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -163,8 +153,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="#"><img src="img/logo.png" alt=""></a>
+                    <div class="logo  rounded text-center mb-3">
+                        <a href="/" class="ml-5">
+                            <h4><span class="font-weight-bold h2 " style="color: #7fad39;">Scan</span>Market</h4>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -172,9 +164,9 @@
                         <ul class="select1" id="myTab">
                             <li><a class="select_active" id="home" href="/">Home</a></li>
                             <li class="active select_active"><a id="shop" href="#">Shop</a></li>
-                            <li><a  class="select_active" href="#">Pages</a>
-                                <ul  class="header__menu__dropdown">
-                                    
+                            <li><a class="select_active" href="#">Pages</a>
+                                <ul class="header__menu__dropdown">
+
                                     <li><a href="/shoping-cart">Shoping Cart</a></li>
                                     <li><a href="/checkout">Check Out</a></li>
                                     <li><a href="/blog-details">Blog Details</a></li>
@@ -183,28 +175,32 @@
                             <li><a id="blog" class="select_active" href="/blog">Blog</a></li>
                             <li><a id="contact" class="select_active" href="/contact">Contact</a></li>
                         </ul>
-                        
+
                     </nav>
                 </div>
-               
+
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#" data-toggle="modal" data-target="#heart"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <%if( typeof cartlength1 !== "undefined"){%>
-                               
-                            <li><a href="/shoping-cart"><i class="fa fa-shopping-bag"></i> <span><%=cartlength1%></span></a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#heart"><i class="fa fa-heart"></i>
+                                    <span>3</span></a></li>
+                            <%if( typeof cartlength1 !=="undefined" ){%>
+
+                                <li><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>
+                                            <%=cartlength1%>
+                                        </span></a></li>
+                                <% } else {%>
+                                    <li><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>0</span></a>
+                                    </li>
+
+                                    <% }%>
+                        </ul>
+                        <%if(typeof total !=="undefined" ){%>
+                            <div class="header__cart__price">item: <span>JOD <%=total%></span></div>
                             <% } else {%>
-                                <li><a href="/shoping-cart"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                                <div class="header__cart__price">item: <span>JOD 0</span></div>
 
                                 <% }%>
-                        </ul>
-                        <%if(typeof total !== "undefined"){%>
-                            <div class="header__cart__price">item: <span>$ <%=total%></span></div>
-                            <% } else {%>
-                             <div class="header__cart__price">item: <span>$ 0</span></div>
-             
-                             <% }%>
                     </div>
                 </div>
             </div>
@@ -233,7 +229,7 @@
                             <li><a href="/shop-grid/Cleaning-products">Cleaning products</a></li>
                             <li><a href="/shop-grid/meat">meat</a></li>
                             <li><a href="/shop-grid/preserves">preserves</a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -254,7 +250,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>0799999999</h5>
+                                <h5>0797845275</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
@@ -264,4 +260,4 @@
         </div>
     </section>
     <div class="tab-content">
-    <!-- Hero Section End -->
+        <!-- Hero Section End -->

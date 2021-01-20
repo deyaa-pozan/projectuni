@@ -1,0 +1,50 @@
+<%- include('partials/header'); -%>
+    <div class="col-lg-12">
+        <div style="margin-top:100px" class="card">
+            <div class="card-header">
+                <strong>Add Discount</strong>
+            </div>
+            <div class="card-body ">
+                <form action="/discount/<%=productId._id%>" method="post"  class="form-horizontal">
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">ID Product</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static"><%=productId._id%></p>
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="selectdiscount" class=" form-control-label">Discount %</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="selectdiscount" id="selectdiscount" class="form-control">
+                                <option value="0">Please select</option>
+                                <option value="5">5%</option>
+                                <option value="10">10%</option>
+                                <option value="25">25%</option>
+                                <option value="50">50%</option>
+                                <option value="75">75%</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Add
+
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-sm">
+                            <i class="fa fa-ban"></i> Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+    <%- include('partials/footer'); -%>

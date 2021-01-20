@@ -19,7 +19,7 @@
   "homepage": "https://github.com/puikinsh/CoolAdmin#readme",
   "dependencies": {
     "ajax": "0.0.4",
-    "alert": "^5.0.6",
+    "alert": "^5.0.10",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -43,6 +43,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "popups": "^1.1.3"
   }
 }
