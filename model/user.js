@@ -20,7 +20,8 @@ const userschema = new mongoose.Schema({
   isVerified: { type: Boolean, default: false },
   passwordResetToken: String,
   passwordResetExpires: Date,
-  productitem: []
+  productitem: [],
+  noti: []
 });
 
 const user = new mongoose.model("user", userschema);

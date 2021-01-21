@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const admin = require("../model/admin");
 const User = require("../model/user");
 const order = require("../model/order");
@@ -276,8 +277,15 @@ app.post("/discount/:id", function (req, res) {
     if (err) {
       console.log(err)
     } else {
-      res.redirect("/addproduct")
+      User.findOneAndUpdate({productitem :req.params.id},{ $addToSet: { noti: req.body.message+decs.captiond } },function(err,found){
+        res.redirect("/addproduct")
+          });
+      
     }
   });
+ 
 });
+
+
+
 module.exports = app
