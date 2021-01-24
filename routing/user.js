@@ -77,7 +77,7 @@ app.post("/register-user", (req, res) => {
       password2
     });
   } else {
-    User.findOne({ email: email }).then(user => {
+    User.findOne({ email: email ,username:username}).then(user => {
       if (user) {
         errors.push({ msg: 'Email already exists' });
         res.render('register-user', {

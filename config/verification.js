@@ -22,9 +22,6 @@ confirmationPost : function (req, res, next) {
             user.isVerified = true;
             user.save(function (err) {
                 if (err) { return res.status(500).send({ msg: err.message }); }
-                
-                
-
             });
         });
     });
@@ -53,7 +50,7 @@ resendTokenPost : function (req, res, next) {
             var transporter = nodemailer.createTransport({service: 'gmail',port: 465,secure: true,   auth: { user: "deaiaa.1999@gmail.com", pass: "deaiaa.1999" }, tls:{rejectUnauthorized: false} });
             console.log(transporter);
         
-            var mailOptions = { from: 'deaiaa.1999@gmail.com', to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttps:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
+            var mailOptions = { from: 'deaiaa.1999@gmail.com', to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
             console.log(mailOptions);
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0" ;
             transporter.sendMail(mailOptions, function (err) {

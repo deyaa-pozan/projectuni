@@ -16,7 +16,7 @@ const productschema = new mongoose.Schema({
 	},
 	discount: {
 		type: Number,
-		default: 1
+		default: 0
 	}
 });
 

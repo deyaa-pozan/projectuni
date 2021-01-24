@@ -161,7 +161,7 @@ app.get('/add/:product', function (req, res) {
         caption: p.captiond,
         department: p.departmentd,
         qy: 1,
-        price: parseFloat(p.priced).toFixed(2),
+        price: parseFloat(p.priced*(1-p.discount)).toFixed(2),
         image: p.img[0]
       });
     } else {
@@ -181,7 +181,7 @@ app.get('/add/:product', function (req, res) {
           department: p.departmentd,
           caption: p.captiond,
           qy: 1,
-          price: parseFloat(p.priced).toFixed(2),
+          price: parseFloat(p.priced*(1-p.discount)).toFixed(2),
           image: p.img[0]
         });
       }
@@ -221,6 +221,24 @@ app.get('/delete-item/:item', function (req, res) {
     }
   });
   res.redirect("/shoping-cart");
+});
+
+//delete all product in session
+app.get('/quantity/:id', function (req, res) {
+  var addy = req.params.id;
+  var id= addy.substr(0, addy.indexOf('-')); 
+  var qty = addy.substring(addy.lastIndexOf("-") + 1)
+  var cart = req.session.cart;
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].barcode == id&& qty!=0) {
+      cart[i].qy=parseInt(qty) ;
+      
+      break;
+    }
+  }
+  console.log(id+" done");
+  console.log(qty+" ok");
+res.redirect("/shoping-cart");
 });
 
 

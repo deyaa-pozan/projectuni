@@ -234,12 +234,21 @@ app.get("/deleteorder/:id", function (req, res) {
 app.get("/deleteuser/:id", function (req, res) {
   console.log(req.params.id)
 
-  User.findByIdAndRemove(req.params.id, function (err) {
+  User.findByIdAndRemove(req.params.id, function (err, founduser) {
     if (!err) {
-      console.log("Successfully deleted checked item.");
-      res.redirect("/userdata");
+      console.log("Successfully deleted checked item." );
+      order.deleteMany({ email: founduser.email }, function (erruser) {
+        if (!erruser) {
+          res.redirect("/userdata");
+        } else {
+          console.log(erruser);
+          res.redirect("/userdata");
+        }
+      });
+
     }
     else {
+
       console.log(err);
       res.redirect("/userdata")
     }
@@ -273,17 +282,17 @@ app.get("/discount/:id", adminensureAuthenticated, function (req, res) {
 });
 
 app.post("/discount/:id", function (req, res) {
-  product.findByIdAndUpdate({ _id: req.params.id }, { $set: { discount: parseInt(req.body.selectdiscount)/100 } }, { upsert: true, strict: false }, function (err, decs) {
+  product.findByIdAndUpdate({ _id: req.params.id }, { $set: { discount: parseInt(req.body.selectdiscount) / 100 } }, { upsert: true, strict: false }, function (err, decs) {
     if (err) {
       console.log(err)
     } else {
-      User.findOneAndUpdate({productitem :req.params.id},{ $addToSet: { noti: req.body.message+decs.captiond } },function(err,found){
+      User.updateMany({ productitem: req.params.id }, { $addToSet: { noti: req.body.message + decs.captiond } }, function (err, found) {
         res.redirect("/addproduct")
-          });
-      
+      });
+
     }
   });
- 
+
 });
 
 

@@ -1,56 +1,85 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="utf-8">
-	<title>RegistrationForm_v1 by Colorlib</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login Page</title>
+   <!--Made with love by Mutiullah Samim -->
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-	<!-- MATERIAL DESIGN ICONIC FONT -->
-	<link rel="stylesheet" href="fontsu/material-design-iconic-font/css/material-design-iconic-font.min.css">
-
-	<!-- STYLE CSS -->
-	<link rel="stylesheet" href="cssu/style.css">
+	<!--Custom styles-->
+	<link rel="stylesheet" type="text/css" href="/css/stylelogin.css">
 </head>
-
 <body>
+<div class="container">
 
-	<div class="inner">
-		<div class="image-holder">
-			<img src="/imagesu/im2.jpg" alt="">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+                <h3>Sign Up</h3>
+               <%- include('partials/messages'); -%>
+                
+				
+			</div>
+			<div class="card-body">
+                <form action="register-user" method="POST">
+                    
+
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" placeholder="Username" name="username" class="form-control"
+				value="<%= typeof username != 'undefined' ? username : '' %>">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
+						</div>
+						<input type="email" placeholder="Email Address" name="email" class="form-control"
+				value="<%= typeof email != 'undefined' ? email : '' %>">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" placeholder="Password" name="password" class="form-control"
+				value="<%= typeof password != 'undefined' ? password : '' %>">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" placeholder="Confirm Password" name="passwordcheck" class="form-control"
+				value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
+					</div>
+					
+					<div class="form-group">
+						<input type="submit" value="Register" class="btn float-right login_btn">
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					You have an account?<a href="/login-user">Sign In</a>
+				</div>
+				<div class="d-flex justify-content-center links">
+					<a href="/forget" >Forgot your password?</a>
+				</div>
+			</div>
 		</div>
-
-		<form action="register-user" method="POST">
-			<%- include('partials/messages'); -%>
-				<h3>Registration Form</h3>
-
-				<div class="form-wrapper">
-					<input type="text" placeholder="Username" name="username" class="form-control"
-						value="<%= typeof username != 'undefined' ? username : '' %>">
-					<i class="zmdi zmdi-account"></i>
-				</div>
-				<div class="form-wrapper">
-					<input type="email" placeholder="Email Address" name="email" class="form-control"
-						value="<%= typeof email != 'undefined' ? email : '' %>">
-					<i class="zmdi zmdi-email"></i>
-				</div>
-
-				<div class="form-wrapper">
-					<input type="password" placeholder="Password" name="password" class="form-control"
-						value="<%= typeof password != 'undefined' ? password : '' %>">
-					<i class="zmdi zmdi-lock"></i>
-				</div>
-				<div class="form-wrapper">
-					<input type="password" placeholder="Confirm Password" name="passwordcheck" class="form-control"
-						value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
-					<i class="zmdi zmdi-lock"></i>
-				</div>
-				<button>Register
-					<i class="zmdi zmdi-arrow-right"></i>
-				</button>
-		</form>
 	</div>
-
+</div>
 </body>
-
 </html>
+

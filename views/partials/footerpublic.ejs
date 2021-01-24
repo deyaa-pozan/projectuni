@@ -162,6 +162,46 @@
     });
 </script>
 
+<script>
+    jQuery(document).ready(function ($) {
+        
+        function doSomething(e){
+            e.preventDefault();
+            var id = $(this).attr("name");
+            var q = $("."+id+"1").val();
+            
+            $.ajax({
+                method: "GET",
+                data: { id: id },
+                url: '/quantity/' + id+"-"+q ,
+                success: function (data) {
+                
+                }
+                
+            });
+        }
+        $(document).on('input','#ss',doSomething);
+
+
+        
+        $(document).on('click ', '.pro-qty',function(e){
+            var id = $(this).attr("id");
+            var q = $("."+id+"1").val();
+            $.ajax({
+                method: "GET",
+                data: { id: id },
+                url: '/quantity/' + id+"-"+q ,
+                success: function (data) {
+                
+                }
+                
+            });
+
+        });
+        
+      });
+      </script>
+
 </body>
 
 </html>

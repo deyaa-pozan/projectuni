@@ -45,7 +45,7 @@
                                     <div class="col-lg-6">
                                         <div class="checkout__input">
                                             <p>Full Name<span>*</span></p>
-                                            <input type="text" name="fullname">
+                                            <input type="text" name="fullname" required>
                                         </div>
                                     </div>
 
@@ -54,7 +54,7 @@
                                 <div class="checkout__input">
                                     <p>Address<span>*</span></p>
                                     <input type="text" placeholder="Street Address" class="checkout__input__add"
-                                        name="address">
+                                        name="address" required>
 
                                 </div>
 
@@ -62,7 +62,7 @@
                                     <div class="col-lg-6">
                                         <div class="checkout__input">
                                             <p>Phone<span>*</span></p>
-                                            <input type="text" name="numphone">
+                                            <input type="text" name="numphone" required>
                                         </div>
                                     </div>
 
@@ -73,7 +73,7 @@
                                     <p>Order notes<span>*</span></p>
                                     <input type="text"
                                         placeholder="Notes about your order, e.g. special notes for delivery."
-                                        name="note">
+                                        name="note" >
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
@@ -85,7 +85,7 @@
                                         <%var x=0 %>
                                             <% cart.forEach(function(product){ %>
                                                 <li>
-                                                    <%=product.caption%> <span>
+                                                    <%=product.qy%> * <%=product.caption%><span>
                                                             <%=product.price*product.qy%>
                                                         </span>
                                                 </li>
@@ -94,30 +94,20 @@
                                     </ul>
                                     <div class="checkout__order__subtotal">Subtotal <span></span></div>
                                     <div class="checkout__order__total">Total <span>$<%=x%></span></div>
-                                    <div class="checkout__input__checkbox">
-                                        <label for="acc-or">
-                                            Create an account?
-                                            <input type="checkbox" id="acc-or">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor
-                                        incididunt
-                                        ut labore et dolore magna aliqua.</p>
-                                    <div class="checkout__input__checkbox">
-                                        <label for="payment">
-                                            Check Payment
-                                            <input type="checkbox" id="payment">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkout__input__checkbox">
-                                        <label for="paypal">
-                                            Paypal
-                                            <input type="checkbox" id="paypal">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
+                                    <div class="footer__widget">
+                                    <ul>
+                                        <li><a href="#" data-toggle="modal" data-target="#payment">Payment Credit Card </a></li>
+                                         <div class="checkout__input__checkbox">
+                                            <label for="paypal">
+                                                cash delivery
+                                                <input type="checkbox" id="paypal" required>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    
+                                        
+                                    </ul>
+                                </div>
                                     <button type="submit" class="site-btn">PLACE ORDER</button>
                                 </div>
                             </div>
@@ -132,7 +122,64 @@
                 <h1>no Item checkout. <a href="/">CONTINUE SHOPPING</a></h1>
             </div>
             <% } %>
+<!-- Credit Card-->
+<div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-block">
+                <h5 class="modal-title text-center " id="paymentLabel">Pay Invoice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <form action="" method="post" novalidate="novalidate">
+                   
+                    <div class="form-group has-success">
+                        <label for="cc-name" class="control-label mb-1">Name on card</label>
+                        <input id="cc-name" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
+                            autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                        <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-number" class="control-label mb-1">Card number</label>
+                        <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number identified visa" value="" data-val="true"
+                            data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number"
+                            autocomplete="cc-number">
+                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-exp" class="control-label mb-1">Expiration</label>
+                                <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
+                                    data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
+                                    autocomplete="cc-exp">
+                                <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="x_card_code" class="control-label mb-1">Security code</label>
+                            <div class="input-group">
+                                <input id="x_card_code" name="x_card_code" type="tel" class="form-control cc-cvc" value="" data-val="true" data-val-required="Please enter the security code"
+                                    data-val-cc-cvc="Please enter a valid security code" autocomplete="off">
 
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                            <i class="fa fa-lock fa-lg"></i>&nbsp;
+                            <span id="payment-button-amount">Pay $<%=x%></span>
+                            <span id="payment-button-sending" style="display:none;">Sending…</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
                 <!-- Footer Section Begin -->
 
                 <!-- Footer Section End -->
