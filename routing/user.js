@@ -11,7 +11,7 @@ const passport = require('passport');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-const { confirmationPost, resendTokenPost } = require('../config/verification');
+const {changePasswordPost, changePassword, confirmationPost, resendTokenPost } = require('../config/verification');
 const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -152,8 +152,23 @@ app.get('/logout-user', (req, res) => {
   console.log(req.session);
   res.redirect('/');
 });
-app.get("/forget", function (req, res) {
+app.get("/forget-pass", function (req, res) {
   res.render("forget-pass");
 });
+app.post("/forget-pass",changePassword, function (req, res) {
+  req.flash('success_msg', 'Send link this email  '+req.body.email);
+
+  res.redirect("/forget-pass")
+});
+
+app.get("/change-pass/:token", function (req, res) {
+
+  res.render("change-pass", {token:req.params.token});
+});
+app.post("/change-pass/:token",changePasswordPost, function (req, res) {
+  req.flash('success_msg', 'Password changed successfully ');
+  res.redirect("/login-user");
+});
+
 
 module.exports = app;

@@ -89,3 +89,8 @@ color: white;
 margin-left: 4px;
 color: #7fad39;
 }
+
+.links a:hover{
+	margin-left: 4px;
+	color: #fff;
+	}
