@@ -2,6 +2,7 @@ const express = require("express");
 const _ = require("lodash");
 const app = express();
 const product = require("../model/product");
+const category = require("../model/Category");
 const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 const admin = require("../model/admin");
 
@@ -10,7 +11,9 @@ app.get("/addproduct", function (req, res) {
   if (req.isAuthenticated()) {
     product.find().count(function (err, count) {
       product.find({}, function (err, found) {
-        res.render("addproduct", { count: count, found: found });
+        category.find({}, function (err, category) {
+        res.render("addproduct", { count: count, found: found, category:category });
+      });
       });
     });
   }
@@ -72,6 +75,39 @@ app.post("/edit/:id", function (req, res) {
   });
 });
 
+
+//Add Category
+app.post("/addcategory", function (req, res) {
+  const newCategory = new category({
+    nameCategory : req.body.category
+  });
+  newCategory.save(function(err){
+    if (!err) {
+      res.redirect("/addproduct");
+    }
+  })
+});
+
+//Category item
+app.get("/deletecategory/:id", function (req, res) {
+  category.findByIdAndRemove(req.params.id, function (err,foundcategory) {
+    if (!err) {
+      console.log("Successfully deleted checked item.");
+       product.deleteMany({departmentd:foundcategory.nameCategory},function(error){
+         if (!error) {
+          res.redirect("/addproduct");
+         }else{
+           console.log(error);
+         }
+       })
+      
+    }
+    else {
+      console.log(err);
+      res.redirect("/addproduct")
+    }
+  });
+});
 
 
 module.exports = app;

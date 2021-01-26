@@ -197,14 +197,20 @@ app.get("/dashbord", adminensureAuthenticated, function (req, res) {
             if (err) {
               console.log(err);
             } else {
-              if (results.length != 0) {
-                res.render("index", { count: count, usercount: usercount, totalsales: results[0].totalsales, countorder: results[0].count });
+              order.find({ __v: 0 }, function (ordererror, neworder) {
 
-              } else {
-                console.log(results.length);
-                res.render("index", { count: count, usercount: usercount, totalsales: results.length, countorder: results.length });
-              }
+                Neworder = neworder;
+                if (results.length != 0) {
+
+                  res.render("index", { count: count, usercount: usercount, totalsales: results[0].totalsales, countorder: results[0].count  });
+
+                } else {
+                  console.log(results.length);
+                  res.render("index", { count: count, usercount: usercount, totalsales: results.length, countorder: results.length });
+                }
+              });
             }
+
           });
         });
       });
@@ -236,7 +242,7 @@ app.get("/deleteuser/:id", function (req, res) {
 
   User.findByIdAndRemove(req.params.id, function (err, founduser) {
     if (!err) {
-      console.log("Successfully deleted checked item." );
+      console.log("Successfully deleted checked item.");
       order.deleteMany({ email: founduser.email }, function (erruser) {
         if (!erruser) {
           res.redirect("/userdata");
@@ -286,7 +292,8 @@ app.post("/discount/:id", function (req, res) {
     if (err) {
       console.log(err)
     } else {
-      User.updateMany({ productitem: req.params.id }, { $addToSet: { noti: req.body.message + decs.captiond } }, function (err, found) {
+      console.log(req.body);
+      User.updateMany({ productitem: req.params.id }, { $addToSet: { noti: req.body.message + decs.captiond + " لمدة 24 ساعة " } }, function (err, found) {
         res.redirect("/addproduct")
       });
 

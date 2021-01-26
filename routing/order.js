@@ -67,6 +67,19 @@ app.post("/send", function (req, res) {
   req.session.cart = [];
   res.redirect("/");
 });
+app.get("/status/:id", function (req, res) {
+  var stat = req.params.id;
+  var id = stat.substr(0, stat.indexOf('-'));
+  var numstatus = stat.substring(stat.lastIndexOf("-") + 1)
+  order.findByIdAndUpdate(id, { __v: numstatus }, { new: true }, function (err, changestat) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(changestat);
+      res.redirect("/order")
+    }
+  });
+});
 
 module.exports = app;
 

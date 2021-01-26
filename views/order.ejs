@@ -87,16 +87,54 @@
                                         </td>
 
                                         <td>
-                                            <p data-placement="top" data-toggle="tooltip" title="DONE"><a
-                                                    href="/edit/<%=foundorder[i]._id%>"><button onclick="myFunction()"
-                                                        class=" fa fa-check " data-title="DONE" data-toggle="modal"
-                                                        data-target="#edit"><span
-                                                            class="glyphicon glyphicon-pencil"></span></button></a></p>
-                                            <p data-placement="top" data-toggle="tooltip" title="CANCEL"><a
-                                                    href="/edit/<%=foundorder[i]._id%>"><button onclick="myFunction()"
-                                                        class=" fa fa-times " data-title="CANCEL" data-toggle="modal"
-                                                        data-target="#edit"><span
-                                                            class="glyphicon glyphicon-pencil"></span></button></a></p>
+                                            <%if(foundorder[i].__v==0){%>
+                                                <p data-placement="top" data-toggle="tooltip" title="DONE"><a
+                                                        href="/status/<%=foundorder[i]._id%>-1"><button
+                                                            class=" fa fa-check " data-title="DONE" data-toggle="modal"
+                                                            data-target="#edit"><span
+                                                                class="glyphicon glyphicon-pencil"></span></button></a>
+                                                </p>
+                                                <p data-placement="top" data-toggle="tooltip" title="CANCEL"><a
+                                                        href="/status/<%=foundorder[i]._id%>-3"><button
+                                                            class=" fa fa-times " data-title="CANCEL"
+                                                            data-toggle="modal" data-target="#edit"><span
+                                                                class="glyphicon glyphicon-pencil"></span></button></a>
+                                                </p>
+                                                <%}else if(foundorder[i].__v==1){%>
+
+                                                    <p data-placement="top" data-toggle="tooltip" title="processed"><a
+                                                            href="/status/<%=foundorder[i]._id%>-2"><button
+                                                                class=" fa fa-tasks " data-title="processed"
+                                                                data-toggle="modal" data-target="#edit"><span
+                                                                    class="glyphicon glyphicon-pencil"></span></button></a>
+                                                    </p>
+
+                                                    <%}else if(foundorder[i].__v==2){%>
+                                                        <p data-placement="top" data-toggle="tooltip" title="delivery">
+                                                            <a href="/status/<%=foundorder[i]._id%>-4"><button
+                                                                    class="fas fa-shipping-fast" data-title="delivery"
+                                                                    data-toggle="modal" data-target="#edit"><span
+                                                                        class="glyphicon glyphicon-pencil"></span></button></a>
+                                                        </p>
+                                                        <%}else if(foundorder[i].__v==3){%>
+                                                            <p data-placement="top" data-toggle="tooltip"
+                                                                title="was canceled"><a><button
+                                                                        class="fa fa-window-close"
+                                                                        data-title="was canceled" data-toggle="modal"
+                                                                        data-target="#edit"><span
+                                                                            class="glyphicon glyphicon-pencil"></span></button></a>
+                                                            </p>
+                                                            <%}else{%>
+
+                                                                <p data-placement="top" data-toggle="tooltip"
+                                                                    title="Received"><a><button
+                                                                            class=" fa fa-check-circle "
+                                                                            data-title="Received" data-toggle="modal"
+                                                                            data-target="#edit"><span
+                                                                                class="glyphicon glyphicon-pencil"></span></button></a>
+                                                                </p>
+                                                                <%}%>
+
                                         </td>
 
                                         <td>

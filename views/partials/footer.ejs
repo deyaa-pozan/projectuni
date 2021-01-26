@@ -118,6 +118,24 @@
   });
 </script>
 
+<!--Delete Category jQuery -->
+<script>
+  jQuery(document).ready(function ($) {
+    $(document).on('click', '#deletecategory', function (e) {
+      e.preventDefault();
+      const id = $(this).data('id');
+      $.ajax({
+        method: "GET",
+        data: { id: id },
+        url: '/deletecategory/' + id,
+        success: function (data) {
+          $("#" + id).remove()
+        }
+      });
+    });
+  });
+</script>
+
 <!--Delete product jQuery -->
 <!-- <script>
   jQuery(document).ready(function ($) {

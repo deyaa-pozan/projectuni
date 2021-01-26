@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const session = require("express-session");
 const product = require("../model/product");
+const feedback = require("../model/feedback");
+const Category = require("../model/Category");
 const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,7 +17,10 @@ app.get("/", function (req, res) {
     product.find({}, function (err, found) {
       product.find({}).sort({ "countshop": -1 }).limit(9).exec(function (err, Top) {
         product.find({}).sort({ "date": -1 }).limit(9).exec(function (err, latest) {
-          res.render("indexpublic", { count: count, found: found, lastseen: req.session.lastseen, topsale: Top, latest: latest });
+          Category.find({}, function (errcate, foundcategory) {
+            allcategory = foundcategory;
+            res.render("indexpublic", { count: count, found: found, lastseen: req.session.lastseen, topsale: Top, latest: latest });
+          });
         });
       });
     });
@@ -48,16 +53,14 @@ app.post("/subscribeform", function (req, res) {
   });
 });
 
-//blog
-app.get("/blog", function (req, res) {
-  res.render("blog");
-});
 
 //contact
 app.get("/contact", function (req, res) {
-  res.render("contact");
+  Category.find({}, function (errcate, foundcategory) {
+    allcategory = foundcategory;
+    res.render("contact");
+  });
 });
-
 // shop-details page
 app.get('/shop-details/:product', function (req, res) {
   product.findOne({ _id: req.params.product }, function (err, p) {
@@ -93,58 +96,62 @@ app.get('/shop-details/:product', function (req, res) {
     }
     product.find({ departmentd: p.departmentd }).countDocuments(function (err, count) {
       product.find({ departmentd: p.departmentd }, function (err, foundrelated) {
-        res.render("shop-details", { found: p, count: count, foundrelated: foundrelated, lastseen: req.session.lastseen });
+        Category.find({}, function (errcate, foundcategory) {
+          allcategory = foundcategory;
+          res.render("shop-details", { found: p, count: count, foundrelated: foundrelated, lastseen: req.session.lastseen });
+        });
       });
     });
   });
 });
-
 //shop-grid page
 app.get('/shop-grid/:dep', function (req, res) {
   const a = (req.params.dep).replace("-", ' ');
   product.find({ departmentd: a }).count(function (err, count) {
     product.find({ departmentd: a }, function (err, found) {
-      console.log(found);
-      res.render("shop-grid", { found: found, count: count });
+      Category.find({}, function (errcate, foundcategory) {
+        allcategory = foundcategory;
+        res.render("shop-grid", { found: found, count: count });
+      });
     });
   });
 });
 
 //add heart product in session
-app.get('/addheart/:product', function (req, res) {
-  product.findOne({ _id: req.params.product }, function (err, ph) {
-    if (err) {
-      console.log(err);
-      res.redirect("/")
-    }
-    if (typeof req.session.heart == "undefined") {
-      req.session.heart = [];
-      req.session.heart.push({
-        barcode: ph._id,
-        caption: ph.captiond,
-        image: ph.img[0]
-      });
-    } else {
-      var heart = req.session.heart;
-      var newitem = true;
-      for (var i = 0; i < heart.length; i++) {
-        if (heart[i].barcode == req.params.product) {
-          newitem = false
-          break;
-        }
-      }
-      if (newitem) {
-        heart.push({
-          barcode: ph._id,
-          caption: ph.captiond,
-          image: ph.img[0]
-        });
-      }
-    }
-    heart = req.session.heart;
-    res.redirect("/")
-  });
-});
+// app.get('/addheart/:product', function (req, res) {
+//   product.findOne({ _id: req.params.product }, function (err, ph) {
+//     if (err) {
+//       console.log(err);
+//       res.redirect("/")
+//     }
+//     if (typeof req.session.heart == "undefined") {
+//       req.session.heart = [];
+//       req.session.heart.push({
+//         barcode: ph._id,
+//         caption: ph.captiond,
+//         image: ph.img[0]
+//       });
+//     } else {
+//       var heart = req.session.heart;
+//       var newitem = true;
+//       for (var i = 0; i < heart.length; i++) {
+//         if (heart[i].barcode == req.params.product) {
+//           newitem = false
+//           break;
+//         }
+//       }
+//       if (newitem) {
+//         heart.push({
+//           barcode: ph._id,
+//           caption: ph.captiond,
+//           image: ph.img[0]
+//         });
+//       }
+//     }
+//     heart = req.session.heart;
+//     res.redirect("/")
+//   });
+// });
 
 //add to cart product in session
 app.get('/add/:product', function (req, res) {
@@ -161,7 +168,7 @@ app.get('/add/:product', function (req, res) {
         caption: p.captiond,
         department: p.departmentd,
         qy: 1,
-        price: parseFloat(p.priced*(1-p.discount)).toFixed(2),
+        price: parseFloat(p.priced * (1 - p.discount)).toFixed(2),
         image: p.img[0]
       });
     } else {
@@ -181,7 +188,7 @@ app.get('/add/:product', function (req, res) {
           department: p.departmentd,
           caption: p.captiond,
           qy: 1,
-          price: parseFloat(p.priced*(1-p.discount)).toFixed(2),
+          price: parseFloat(p.priced * (1 - p.discount)).toFixed(2),
           image: p.img[0]
         });
       }
@@ -199,7 +206,10 @@ app.get('/add/:product', function (req, res) {
 
 //shoping-cart page
 app.get('/shoping-cart', function (req, res) {
-  res.render('shoping-cart', { cart: req.session.cart });
+  Category.find({}, function (errcate, foundcategory) {
+    allcategory = foundcategory;
+    res.render('shoping-cart', { cart: req.session.cart });
+  });
 });
 
 //delete all product in session
@@ -223,22 +233,35 @@ app.get('/delete-item/:item', function (req, res) {
   res.redirect("/shoping-cart");
 });
 
-//delete all product in session
+//quantity checkout
 app.get('/quantity/:id', function (req, res) {
   var addy = req.params.id;
-  var id= addy.substr(0, addy.indexOf('-')); 
+  var id = addy.substr(0, addy.indexOf('-'));
   var qty = addy.substring(addy.lastIndexOf("-") + 1)
   var cart = req.session.cart;
   for (var i = 0; i < cart.length; i++) {
-    if (cart[i].barcode == id&& qty!=0) {
-      cart[i].qy=parseInt(qty) ;
-      
+    if (cart[i].barcode == id && qty != 0) {
+      cart[i].qy = parseInt(qty);
+
       break;
     }
   }
-  console.log(id+" done");
-  console.log(qty+" ok");
-res.redirect("/shoping-cart");
+
+  res.redirect("/shoping-cart");
+});
+
+//Add feedback
+app.post("/feedback", function (req, res) {
+  const newfeedback = new feedback({
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message
+  });
+  newfeedback.save(function (err) {
+    if (!err) {
+      res.redirect("/");
+    }
+  })
 });
 
 

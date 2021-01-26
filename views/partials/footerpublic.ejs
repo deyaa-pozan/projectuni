@@ -100,12 +100,14 @@
 
             e.preventDefault();
             const id = $(this).data('id');
+            document.querySelector(".countcart span").textContent+=1;
             $.ajax({
                 method: "GET",
                 data: id,
                 url: '/add/' + id,
                 success: function (data) {
                     $("." + id).removeClass('fa fa-shopping-cart ').addClass('fa fa-check');
+                    
                 }
             });
         });
@@ -141,6 +143,8 @@
                 $this.addClass('active');
             }
         });
+
+        
     });
 </script>
 
@@ -182,8 +186,6 @@
         }
         $(document).on('input','#ss',doSomething);
 
-
-        
         $(document).on('click ', '.pro-qty',function(e){
             var id = $(this).attr("id");
             var q = $("."+id+"1").val();
@@ -193,14 +195,14 @@
                 url: '/quantity/' + id+"-"+q ,
                 success: function (data) {
                 
-                }
-                
+                } 
             });
-
         });
-        
-      });
+      }); 
+
+
       </script>
+
 
 </body>
 

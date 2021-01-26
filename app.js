@@ -71,6 +71,9 @@ app.use(function (req, res, next) {
   res.locals.cartlength1;
   res.locals.heart;
   res.locals.adminpage;
+  res.locals.Neworder;
+  res.locals.allcategory;
+
   next();
 
 });

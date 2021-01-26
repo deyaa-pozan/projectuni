@@ -20,7 +20,7 @@
                                 <label for="caption" class="form-control-label"> Input caption</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="text" id="caption" name="caption" placeholder="Text" class="form-control">
+                                <input type="text" id="caption"  name="caption" placeholder="Text" class="form-control">
                                 <small class="form-text text-muted">This is a help text</small>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                                 <label for="text-input" class=" form-control-label"> price</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="text" id="price" name="price" placeholder="$0" class="form-control">
+                                <input type="text" id="price" required name="price" placeholder="$0" class="form-control">
                                 <small class="form-text text-muted"></small>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                 <label for="barcode" class=" form-control-label"> barcode</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="text" id="barcode" name="barcode" placeholder="|bar|code|"
+                                <input type="text" id="barcode" name="barcode" required placeholder="|bar|code|"
                                     class="form-control">
                                 <small class="form-text text-muted"></small>
                             </div>
@@ -48,7 +48,7 @@
                                 <label for="stored" class=" form-control-label"> stored</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="text" id="stored" name="stored" placeholder="stored" class="form-control">
+                                <input type="text" id="stored" name="stored" required placeholder="stored" class="form-control">
                                 <small class="form-text text-muted"></small>
                             </div>
                         </div>
@@ -59,11 +59,11 @@
                                 <label for="textarea-input" class=" form-control-label">Input description</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <textarea name="description" id="descriptiont" rows="9" placeholder="Content..."
+                                <textarea name="description" id="descriptiont" rows="9" required placeholder="Content..."
                                     class="form-control"></textarea>
                             </div>
                         </div>
-
+                      
 
                         <div class="row form-group">
                             <div class="col col-md-3">
@@ -72,13 +72,10 @@
                             <div class="col-12 col-md-9">
                                 <select name="select" id="select" class="form-control">
                                     <option value="0">Please select</option>
-                                    <option value="Super Market">Super Market</option>
-                                    <option value="Drinks">Drinks</option>
-                                    <option value="Vegetables and fruits">Vegetables and fruits</option>
-                                    <option value="Cleaning products">Cleaning products</option>
-                                    <option value="meat">meat</option>
-                                    <option value="Dairy">Dairy</option>
-                                    <option value="preserves">preserves</option>
+                                    <% for (var i=0; i < category.length; i++ ) { %>
+                                    
+                                    <option value="<%=category[i].nameCategory%>"><%=category[i].nameCategory%></option>
+                                    <%}%>
 
                                 </select>
                             </div>
@@ -90,7 +87,7 @@
                                 <label for="im" class=" form-control-label">Multiple File input</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <input type="file" id="im" name="im" class="form-control-file "
+                                <input type="file" id="im" name="im" class="form-control-file"
                                     accept="image/png, image/jpeg" multiple>
                             </div>
                         </div>
@@ -108,7 +105,81 @@
                 </div>
 
             </div>
+ 
+            <div class="row" >
+            <div class="col-lg-6">
+                <div style="margin-top:100px" class="card">
+                    <div class="card-header">
+                        <strong>Add Category</strong>
+                    </div>
+                    <div class="card-body ">
+                        <form action="/addcategory" method="post"  class="form-horizontal">
+                           
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="category" class=" form-control-label"> New Category</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" re id="category" required name="category" placeholder="New category" class="form-control"
+                                        >
+                                    <small class="form-text text-muted">Add category</small>
+                                </div>
+                            </div>
+                           
+                            
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Add Category
+        
+                                </button>
+                                <button type="reset" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-ban"></i> Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-lg-6" style="height: 100%;">
+                <div style="margin-top:100px" >
+                    <h4>Category Table</h4>
+                    <div class="col-lg-12" style="overflow-y:scroll;">
+                        <table  class="table table-bordred table-striped" style="width:100%; 
+                        overflow-y:auto; 
+                        position:relative;
+                        height: 100%; ">
+                            <thead>
+                                <th>category</th>
+                                
+                                <th>Delete</th>
+                            </thead>
+                            <tbody>
 
+                                <% for (var i=0; i < category.length; i++ ) { %>
+                                    <tr id="<%=category[i]._id %>">
+                                        <td>
+                                            <%=category[i].nameCategory%>
+                                        </td>
+                                        
+
+                                        <td>
+                                            <p data-placement="top" data-toggle="tooltip" title="Delete"><a
+                                                    href="/deletecategory/<%=category[i]._id %>"><button
+                                                        class="fa fa-trash" data-title="Delete" data-toggle="modal"
+                                                        data-id="<%=category[i]._id %>" id="deletecategory"><span
+                                                            class="glyphicon glyphicon-trash"></span></button></p>
+                                        </td>
+
+                                        <% } %>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <div class="row">
                 <div style="overflow-x:auto;">

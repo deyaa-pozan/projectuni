@@ -50,43 +50,50 @@
                 <div class="row featured__filter categories__slider owl-carousel ">
 
                     <% for (var i=0; i < count; i++ ) { %>
+                        <%if(found[i].stored> 0){%>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mix <%=(found[i].departmentd).replace(/\s+/g,'')%> ">
+                                <div class="featured__item">
+                                    <div class="featured__item__pic set-bg" data-setbg="<%=found[i].img[0]%>">
+                                        <ul class="featured__item__pic__hover">
+                                            <!-- <li><a data-id="<%=found[i]._id %>" id="heart"
+                                                    href="/addheart/<%=found[i]._id%>"><i
+                                                        class="fa fa-heart <%=found[i]._id %>"></i></a></li> -->
+                                            <li><a href="/shop-details/<%=found[i]._id%>"><i class="fa fa-eye"></i></a>
+                                            </li>
+                                            <li data-id="<%=found[i]._id %>" id="add"><a
+                                                    href="/add/<%=found[i]._id%>"><i
+                                                        class="fa fa-shopping-cart <%=found[i]._id %>"></i></a></li>
+                                        </ul>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mix <%=(found[i].departmentd).replace(/\s+/g,'')%> ">
-                            <div class="featured__item">
-                                <div class="featured__item__pic set-bg" data-setbg="<%=found[i].img[0]%>">
-                                    <ul class="featured__item__pic__hover">
-                                        <li><a data-id="<%=found[i]._id %>" id="heart"
-                                                href="/addheart/<%=found[i]._id%>"><i
-                                                    class="fa fa-heart <%=found[i]._id %>"></i></a></li>
-                                        <li><a href="/shop-details/<%=found[i]._id%>"><i class="fa fa-eye"></i></a></li>
-                                        <li data-id="<%=found[i]._id %>" id="add"><a href="/add/<%=found[i]._id%>"><i
-                                                    class="fa fa-shopping-cart <%=found[i]._id %>"></i></a></li>
-                                    </ul>
-                                </div>
 
-                                <div class="featured__item__text">
-                                    <h6><a href="#">
-                                            <%=found[i].captiond%>
-                                        </a></h6>
-                                    <%if(found[i].discount!==0){%>
-                                        <h5
-                                            style="text-decoration: line-through; text-decoration-color: red;text-decoration-style: double;">
-                                            <%=(found[i].priced*1).toFixed(2);%>
-                                        </h5>
-                                        <h5>
-                                            <%=(found[i].priced * (1-found[i].discount)).toFixed(2);%>
-                                                <h5 class="text-success">JOD</h5>
-                                        </h5>
-                                        <% }else{ %>
+                                    </div>
+
+                                    <div class="featured__item__text">
+                                        <h6><a href="#">
+                                                <%=found[i].captiond%>
+                                            </a></h6>
+                                        <%if(found[i].discount!==0){%>
+                                            <h5
+                                                style="text-decoration: line-through; text-decoration-color: red;text-decoration-style: double;">
+                                                <%=(found[i].priced*1).toFixed(2);%>
+                                            </h5>
                                             <h5>
-                                                <%=found[i].priced%>
+                                                <%=(found[i].priced * (1-found[i].discount)).toFixed(2);%>
                                                     <h5 class="text-success">JOD</h5>
                                             </h5>
-                                            <% } %>
+                                            <% }else{ %>
+                                                <h5>
+                                                    <%=found[i].priced%>
+                                                        <h5 class="text-success">JOD</h5>
+                                                </h5>
+                                                <% } %>
+                                    </div>
+
+
                                 </div>
                             </div>
-                        </div>
-                        <% } %>
+                            <% } %>
+                                <% } %>
                 </div>
             </div>
         </section>

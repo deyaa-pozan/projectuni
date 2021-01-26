@@ -41,15 +41,7 @@
         </div>
 
         <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="/img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
+            
             <div class="header__top__right__auth">
                 <a href="#"><i class="fa fa-user"></i> Login</a>
             </div>
@@ -57,16 +49,16 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul class="list1">
                 <li class="active select_active"><a href="/">Home</a></li>
-                <li><a class="select_active" href="/">Shop</a></li>
+              
                 <li><a class="select_active" href="#">Pages</a>
                     <ul class="header__menu__dropdown">
 
                         <li><a href="/shoping-cart">Shoping Cart</a></li>
                         <li><a href="/checkout">Check Out</a></li>
-                        <li><a href="/blog-details">Blog Details</a></li>
+                        
                     </ul>
                 </li>
-                <li><a class="select_active" href="/blog">Blog</a></li>
+              
                 <li><a class="select_active" href="/contact">Contact</a></li>
             </ul>
         </nav>
@@ -119,15 +111,7 @@
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
-                            <div class="header__top__right__language">
-                                <img src="/img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Arabic</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div>
+                            
                             <div class="header__top__right__auth ">
                                 <div class="header__top__left ">
                                     <ul>
@@ -151,7 +135,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row ">
                 <div class="col-lg-3">
                     <div class="logo  rounded text-center mb-3">
                         <a href="/" class="ml-5">
@@ -163,16 +147,14 @@
                     <nav class="header__menu">
                         <ul class="select1" id="myTab">
                             <li><a class="select_active" id="home" href="/">Home</a></li>
-                            <li class="active select_active"><a id="shop" href="#">Shop</a></li>
                             <li><a class="select_active" href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
 
                                     <li><a href="/shoping-cart">Shoping Cart</a></li>
                                     <li><a href="/checkout">Check Out</a></li>
-                                    <li><a href="/blog-details">Blog Details</a></li>
+                                    
                                 </ul>
                             </li>
-                            <li><a id="blog" class="select_active" href="/blog">Blog</a></li>
                             <li><a id="contact" class="select_active" href="/contact">Contact</a></li>
                         </ul>
 
@@ -182,15 +164,15 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#" data-toggle="modal" data-target="#heart"><i class="fa fa-heart"></i>
-                                    <span>3</span></a></li>
+                            
+                                   
                             <%if( typeof cartlength1 !=="undefined" ){%>
 
-                                <li><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>
+                                <li class="countcart"><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>
                                             <%=cartlength1%>
                                         </span></a></li>
                                 <% } else {%>
-                                    <li><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>0</span></a>
+                                    <li class="countcart"><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>0</span></a>
                                     </li>
 
                                     <% }%>
@@ -222,13 +204,9 @@
                             <span>All departments</span>
                         </div>
                         <ul>
-                            <li><a href="/shop-grid/Super Market">Super Market</a></li>
-                            <li><a href="/shop-grid/Drinks">Drinks</a></li>
-                            <li><a href="/shop-grid/Dairy">Dairy</a></li>
-                            <li><a href="/shop-grid/Vegetables and fruits">Vegetables and fruits</a></li>
-                            <li><a href="/shop-grid/Cleaning-products">Cleaning products</a></li>
-                            <li><a href="/shop-grid/meat">meat</a></li>
-                            <li><a href="/shop-grid/preserves">preserves</a></li>
+                            <% for (var i=0; i < allcategory.length; i++ ) { %>
+                            <li><a href="/shop-grid/<%=allcategory[i].nameCategory%>"><%=allcategory[i].nameCategory%></a></li>
+                            <%}%>
 
                         </ul>
                     </div>
