@@ -59,7 +59,9 @@ app.get("/edit/:id", function (req, res) {
     if (err) {
       console.log(err)
     } else {
-      res.render("edit", { decs: decs });
+      category.find({}, function (err, category) {
+      res.render("edit", { decs: decs ,category:category});
+      });
     }
   });
 });

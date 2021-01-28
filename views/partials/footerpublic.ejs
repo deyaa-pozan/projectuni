@@ -1,86 +1,82 @@
 <!-- Footer Section Begin -->
-<footer class="footer spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer__about">
-                    <div class="logo  rounded text-center mb-5 ">
-                        <a href="/" class="ml-5 ">
-                            <h4><span class="font-weight-bold h1 " style="color: #7fad39;">Scan</span>Market</h4>
-                        </a>
+<div id="tabcontent">
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="logo  rounded text-center mb-5 ">
+                            <a href="/" class="ml-5 ">
+                                <h4><span class="font-weight-bold h1 " style="color: #7fad39;">Scan</span>Market</h4>
+                            </a>
+                        </div>
+                        <ul>
+                            <li>Address: Jordan, Amman , mokablin</li>
+                            <li>Phone: 0797845275</li>
+                            <li>Email: scanmarket@scanmarket.com</li>
+                        </ul>
                     </div>
-                    <ul>
-                        <li>Address: Jordan, Amman , mokablin</li>
-                        <li>Phone: 0797845275</li>
-                        <li>Email: scanmarket@scanmarket.com</li>
-                    </ul>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div class="footer__widget">
-                    <h6>Useful Links</h6>
-                    <ul>
-                        <li><a href="#" data-toggle="modal" data-target="#About_Us">About Us</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#Delivery">Delivery infomation</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#Policy">Privacy Policy</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#" data-toggle="modal" data-target="#About_Us">About Us</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#Delivery">Delivery infomation</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#Policy">Privacy Policy</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <script>
-                    window.watsonAssistantChatOptions = {
-                        integrationID: "a56ce81a-09c6-4e1b-a2fa-5aef4a8f9572", // The ID of this integration.
-                        region: "eu-gb", // The region your integration is hosted in.
-                        serviceInstanceID: "f706a491-4de2-49d7-962b-865e464f29d5", // The ID of your service instance.
-                        onLoad: function (instance) { instance.render(); }
-                    };
-                    setTimeout(function () {
-                        const t = document.createElement('script');
-                        t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
-                        document.head.appendChild(t);
-                    });
-                </script>
+                <div>
+                    <script>
+                        window.watsonAssistantChatOptions = {
+                            integrationID: "a56ce81a-09c6-4e1b-a2fa-5aef4a8f9572", // The ID of this integration.
+                            region: "eu-gb", // The region your integration is hosted in.
+                            serviceInstanceID: "f706a491-4de2-49d7-962b-865e464f29d5", // The ID of your service instance.
+                            onLoad: function (instance) { instance.render(); }
+                        };
+                        setTimeout(function () {
+                            const t = document.createElement('script');
+                            t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+                            document.head.appendChild(t);
+                        });
+                    </script>
 
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="/subscribeform" method="POST">
-                        <input type="email" placeholder="Enter your mail" name="email" required="required">
-                        <button type="submit" class="site-btn">Subscribe</button>
-                    </form>
-                    <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer__copyright">
-                    <div class="footer__copyright__text">
-                        <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            project is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                href="https://www.facebook.com/deayaa.pozan.7" target="_blank">deyaa pozan</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                    <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
-                </div>
-            </div>
-        </div>
-        <%- include('footermodal'); -%>
-    </div>
-</footer>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="/subscribeform" method="POST">
+                            <input type="email" placeholder="Enter your mail" name="email" required="required">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                project is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                    href="https://www.facebook.com/deayaa.pozan.7" target="_blank">deyaa pozan</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <%- include('footermodal'); -%>
+        </div>
+    </footer>
+</div>
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->
@@ -100,14 +96,16 @@
 
             e.preventDefault();
             const id = $(this).data('id');
-            document.querySelector(".countcart span").textContent+=1;
+            document.querySelector(".countcart span").textContent = 1 + parseInt(document.querySelector(".countcart span").textContent);
+            document.getElementById("totalcart").innerHTML = parseFloat(document.querySelector(".priceitem" + id).textContent) + parseFloat(document.getElementById("totalcart").innerHTML);
+
             $.ajax({
                 method: "GET",
                 data: id,
                 url: '/add/' + id,
                 success: function (data) {
                     $("." + id).removeClass('fa fa-shopping-cart ').addClass('fa fa-check');
-                    
+
                 }
             });
         });
@@ -133,20 +131,9 @@
     });
 </script>
 
-<!-- active select -->
-<script>
-    jQuery(document).ready(function () {
-        $('.select1 li').click(function (e) {
-            $('.select1 li').removeClass('active');
-            var $this = $(this);
-            if (!$this.hasClass('active')) {
-                $this.addClass('active');
-            }
-        });
 
-        
-    });
-</script>
+
+
 
 <!-- delete item in cart session jQuery -->
 <script>
@@ -154,6 +141,7 @@
         $(document).on('click', '#deletep', function (e) {
             e.preventDefault();
             const id = $(this).data('id');
+
             $.ajax({
                 method: "GET",
                 data: { id: id },
@@ -162,46 +150,102 @@
                     $("#" + id).remove()
                 }
             });
+
+            $('.totalorder').html(parseFloat($('.totalorder').html()) - parseFloat($(".totalitem" + id).text()));
+            $('.totalcart').html($('.totalorder').html());
+
         });
     });
 </script>
 
 <script>
     jQuery(document).ready(function ($) {
-        
-        function doSomething(e){
+
+        function doSomething(e) {
             e.preventDefault();
             var id = $(this).attr("name");
-            var q = $("."+id+"1").val();
-            
+            var q = $("." + id + "1").val();
+            var maxstored = $(this).attr('data-id')
+            if (parseInt(q) > parseInt(maxstored)) {
+                alert("The order is larger than the product stock");
+                $("." + id + "1").val(maxstored);
+            }
+            if (parseInt(q) == 0) {
+                $("." + id + "1").val("1");
+            }
+            var id = $(this).attr("name");
+            var q = $("." + id + "1").val();
+            $(".totalitem" + id).text((parseFloat($(".priceitem" + id).text()) * parseFloat(q)).toFixed(2));
+            $(".totalorder").text((parseFloat($(".priceitem" + id).text()) * parseFloat(q)).toFixed(2));
+            var sum = 0;
+
+            $('.totalitem').each(function () {
+                var price = $(this);
+                sum += parseFloat(price.text());
+
+            });
+
+            $('.totalorder').html(sum);
+
+            $('.totalcart').html($('.totalorder').html());
+
             $.ajax({
                 method: "GET",
                 data: { id: id },
-                url: '/quantity/' + id+"-"+q ,
+                url: '/quantity/' + id + "-" + q,
                 success: function (data) {
-                
+
                 }
-                
-            });
-        }
-        $(document).on('input','#ss',doSomething);
 
-        $(document).on('click ', '.pro-qty',function(e){
+            });
+
+        }
+        $(document).on('input', '#ss', doSomething);
+
+        $(document).on('click ', '.pro-qty', function (e) {
             var id = $(this).attr("id");
-            var q = $("."+id+"1").val();
+            var q = $("." + id + "1").val();
+            var maxstored = $(this).attr('data-id')
+            if (parseInt(q) > parseInt(maxstored)) {
+                alert("The order is larger than the product stock");
+                $("." + id + "1").val(maxstored);
+            }
+            if (parseInt(q) == 0) {
+                $("." + id + "1").val("1");
+            }
+
+            id = $(this).attr("id");
+            q = $("." + id + "1").val();
+            $(".totalitem" + id).text((parseFloat($(".priceitem" + id).text()) * parseFloat(q)).toFixed(2));
+            $(".totalorder").text((parseFloat($(".priceitem" + id).text()) * parseFloat(q)).toFixed(2));
+            var sum = 0;
+
+            $('.totalitem').each(function () {
+                var price = $(this);
+                sum += parseFloat(price.text());
+
+            });
+
+            $('.totalorder').html(sum);
+
+            $('.totalcart').html($('.totalorder').html());
+
+
             $.ajax({
                 method: "GET",
                 data: { id: id },
-                url: '/quantity/' + id+"-"+q ,
+                url: '/quantity/' + id + "-" + q,
                 success: function (data) {
-                
-                } 
+
+                }
+
             });
+
         });
-      }); 
+    });
 
 
-      </script>
+</script>
 
 
 </body>

@@ -76,13 +76,10 @@
                                 <option value="<%=decs.departmentd%>">
                                     <%=decs.departmentd%>
                                 </option>
-                                <option value="Super Market">Super Market</option>
-                                <option value="Drinks">Drinks</option>
-                                <option value="Vegetables and fruits">Vegetables and fruits</option>
-                                <option value="Cleaning products">Cleaning products</option>
-                                <option value="meat">meat</option>
-                                <option value="Dairy">Dairy</option>
-                                <option value="preserves">preserves</option>
+                                <% for (var i=0; i < category.length; i++ ) { %>
+                                    
+                                    <option value="<%=category[i].nameCategory%>"><%=category[i].nameCategory%></option>
+                                    <%}%>
                             </select>
                         </div>
                     </div>

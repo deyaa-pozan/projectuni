@@ -1,21 +1,5 @@
 <%- include('partials/headerpublic'); -%>
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Shopping Cart</h2>
-                        <div class="breadcrumb__option">
-                            <a href="/">Home</a>
-                            <span>Shopping Cart</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+
 
     <!-- Shoping Cart Section Begin -->
     <form method="GET" action="/deletepro" id="dele">
@@ -25,7 +9,7 @@
                     <div class="col-lg-12">
                         <div class="shoping__cart__table">
                             <% if (typeof cart !=="undefined" ) {%>
-                                <table>
+                                <table id="mytable">
                                     <thead>
                                         <tr>
                                             <th class="shoping__product">Products</th>
@@ -36,7 +20,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%var x=0 %>
+                                        <%var totalorder=0 %>
                                             <% cart.forEach(function(product){ %>
 
                                                 <tr id="<%=product.barcode%>">
@@ -48,35 +32,55 @@
                                                         </h5>
                                                     </td>
                                                     <td class="shoping__cart__price">
-                                                        <%=product.price%>
-                                                    </td>
-                                                    <td class="shoping__cart__quantity">
-                                                        <div class="quantity" >
-                                                            <div class="pro-qty" id="<%=product.barcode%>" >
-                                                                <input type="text" name="<%=product.barcode%>" class="<%=product.barcode%>1" id="ss" value="<%=product.qy%>">
-                                                            </div>
+                                                        <div class="priceitem<%=product.barcode%>">
+                                                            <%=product.price%>
                                                         </div>
                                                     </td>
-                                                    <%var qty=product.qy * product.price %>
+                                                    <%for (var i=0; i < foundprodct.length; i++) {%>
+                                                        <% if (foundprodct[i]._id==product.barcode) {%>
+                                                            <%var maxstored=foundprodct[i].stored%>
+                                                                <% }%>
+                                                                    <%}%>
 
-                                                        <% x=qty+x %>
-                                                            <td class="shoping__cart__total">
-                                                                <%=qty%>
 
-                                                            </td>
-                                                            <td class="shoping__cart__item__close">
-                                                                <span class="icon_close"></span>
-                                                            </td>
-                                                            <td>
-                                                                <p data-placement="top" data-toggle="tooltip"
-                                                                    title="Delete"><a><button
-                                                                            class=" btn-danger  fa fa-trash"
-                                                                            data-id="<%=product.barcode %>" id="deletep"
-                                                                            data-title="Delete"
-                                                                            data-toggle="modal"><span
-                                                                                class="glyphicon glyphicon-trash"></span></button>
-                                                                </p>
-                                                            </td>
+                                                                        <td class="shoping__cart__quantity">
+                                                                            <div class="quantity">
+                                                                                <div class="pro-qty"
+                                                                                    id="<%=product.barcode%>"
+                                                                                    data-id="<%=maxstored%>">
+                                                                                    <input type="text"
+                                                                                        name="<%=product.barcode%>"
+                                                                                        data-id="<%=maxstored%>"
+                                                                                        class="<%=product.barcode%>1"
+                                                                                        id="ss" value="<%=product.qy%>">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <%var totalitem=product.qy * product.price %>
+
+                                                                            <% totalorder=totalitem+totalorder %>
+                                                                                <td class="shoping__cart__total">
+                                                                                    <div class=" totalitem<%=product.barcode%> totalitem"
+                                                                                        id="<%=product.price%>">
+                                                                                        <%=totalitem.toFixed(2);%>
+                                                                                    </div>
+
+                                                                                </td>
+                                                                                <td class="shoping__cart__item__close">
+                                                                                    <span class="icon_close"></span>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <p data-placement="top"
+                                                                                        data-toggle="tooltip"
+                                                                                        title="Delete"><a><button
+                                                                                                class=" btn-danger  fa fa-trash"
+                                                                                                data-id="<%=product.barcode %>"
+                                                                                                id="deletep"
+                                                                                                data-title="Delete"
+                                                                                                data-toggle="modal"><span
+                                                                                                    class="glyphicon glyphicon-trash"></span></button>
+                                                                                    </p>
+                                                                                </td>
                                                 </tr>
                                                 <%});%>
                                     </tbody>
@@ -96,26 +100,24 @@
                                 Delete Cart</a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="shoping__continue">
-                            <div class="shoping__discount">
-                                <h5>Discount Codes</h5>
-                                <form action="#">
-                                    <input type="text" placeholder="Enter your coupon code">
-                                    <button type="submit" class="site-btn">APPLY COUPON</button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-lg-3">
+
                     </div>
                     <div class="col-lg-6">
                         <div class="shoping__checkout">
                             <h5>Cart Total</h5>
                             <ul id="ch">
-                                <li>Subtotal <span>$<%=x%></span></li>
-                                <li>Total <span>$<%=x%></span></li>
+
+                                <li>Total <span class="totalorder">
+                                        <%=totalorder%>
+                                    </span><span class="text-success">JOD</span></li>
                             </ul>
+                            <%total= totalorder%>
                             <a href="/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
                         </div>
+                    </div>
+                    <div class="col-lg-3">
+
                     </div>
                 </div>
             </div>

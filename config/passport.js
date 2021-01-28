@@ -18,8 +18,10 @@ module.exports = function(passport) {
 
         // Match password
         bcrypt.compare(password, user.password, (err, isMatch) => {
+          
           if (err) throw err;
           if (isMatch) {
+
             if (!user.isVerified) return done(null, false, { message: 'Your account has not been verified. <a href="'+ "/resend/"+user.email +'">resend</a>'+user.email});
             
             return done(null, user);
@@ -57,6 +59,7 @@ module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {
     done(null, {email:user.email,type:user.type});
+    
   });
 
   passport.deserializeUser(function(obj, done) {

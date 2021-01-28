@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const admin = require("../model/admin");
 const User = require("../model/user");
 const order = require("../model/order");
+const feedback = require("../model/feedback");
 const product = require("../model/product");
 const bcrypt = require('bcryptjs');
 const _ = require("lodash");
@@ -161,6 +162,13 @@ app.get("/order", adminensureAuthenticated, function (req, res) {
   });
 });
 
+// DataTable Feedback
+app.get("/feedback", adminensureAuthenticated, function (req, res) {
+  feedback.find({}, function (err, feedbackfound) {
+    res.render("feedback", { foundfeedback: feedbackfound, countfeedback: feedbackfound.length });
+  });
+});
+
 //DataTable User
 app.get("/userdata", adminensureAuthenticated, function (req, res) {
   User.find({}, function (err, userfound) {
@@ -238,28 +246,30 @@ app.get("/deleteorder/:id", function (req, res) {
 });
 // Delete user
 app.get("/deleteuser/:id", function (req, res) {
-  console.log(req.params.id)
-
   User.findByIdAndRemove(req.params.id, function (err, founduser) {
     if (!err) {
       console.log("Successfully deleted checked item.");
-      order.deleteMany({ email: founduser.email }, function (erruser) {
-        if (!erruser) {
-          res.redirect("/userdata");
-        } else {
-          console.log(erruser);
-          res.redirect("/userdata");
-        }
-      });
-
+      res.redirect("/userdata")
     }
     else {
-
       console.log(err);
       res.redirect("/userdata")
     }
   });
+});
 
+// Delete feedback
+app.get("/deletefeedback/:id", function (req, res) {
+  feedback.findByIdAndRemove(req.params.id, function (err, foundfeedback) {
+    if (!err) {
+      console.log("Successfully deleted checked feedback.");
+      res.redirect("/feedback")
+    }
+    else {
+      console.log(err);
+      res.redirect("/feedback")
+    }
+  });
 });
 
 app.post("/editrole/:id", function (req, res) {

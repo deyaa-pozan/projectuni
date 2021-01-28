@@ -609,7 +609,6 @@ ol {
 	position: absolute;
 	right: 18px;
 	top: 9px;
-	content: "3";
 	font-family: "ElegantIcons";
 	font-size: 18px;
 	color: #ffffff;
@@ -3465,4 +3464,8 @@ ol {
 	.blog__details__hero__text h2 {
 		font-size: 24px;
 	}
+}
+.pagecolor{
+	background-color: #7fad39;
+	color: #fff;
 }

@@ -60,6 +60,7 @@
                 </li>
               
                 <li><a class="select_active" href="/contact">Contact</a></li>
+                <li class=" select_active"><a href="#tabcontent">About us</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -156,6 +157,7 @@
                                 </ul>
                             </li>
                             <li><a id="contact" class="select_active" href="/contact">Contact</a></li>
+                            <li class=" select_active"><a href="#tabcontent">About us</a></li>
                         </ul>
 
                     </nav>
@@ -168,7 +170,7 @@
                                    
                             <%if( typeof cartlength1 !=="undefined" ){%>
 
-                                <li class="countcart"><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>
+                                <li class="countcart "><a href="/shoping-cart"><i class="fa fa-shopping-cart"></i> <span>
                                             <%=cartlength1%>
                                         </span></a></li>
                                 <% } else {%>
@@ -178,9 +180,9 @@
                                     <% }%>
                         </ul>
                         <%if(typeof total !=="undefined" ){%>
-                            <div class="header__cart__price">item: <span>JOD <%=total%></span></div>
+                            <div class="header__cart__price" >item: <span id="totalcart" class="totalorder"> <%=total.toFixed(2)%></span>JOD</div>
                             <% } else {%>
-                                <div class="header__cart__price">item: <span>JOD 0</span></div>
+                                <div class="header__cart__price" >item: <span  id="totalcart" class="totalorder"> 0</span>JOD</div>
 
                                 <% }%>
                     </div>
@@ -198,14 +200,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
+                    <div class="hero__categories" >
+                        <div class="hero__categories__all" >
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>All Categories</span>
                         </div>
                         <ul>
                             <% for (var i=0; i < allcategory.length; i++ ) { %>
-                            <li><a href="/shop-grid/<%=allcategory[i].nameCategory%>"><%=allcategory[i].nameCategory%></a></li>
+                            <li><a href="/shop-grid/<%=allcategory[i].nameCategory%>?page=1&limit=9"><%=allcategory[i].nameCategory%></a></li>
                             <%}%>
 
                         </ul>
@@ -237,5 +239,5 @@
             </div>
         </div>
     </section>
-    <div class="tab-content">
+    <div class="tabcontent">
         <!-- Hero Section End -->

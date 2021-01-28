@@ -107,11 +107,16 @@ app.get('/shop-details/:product', function (req, res) {
 //shop-grid page
 app.get('/shop-grid/:dep', function (req, res) {
   const a = (req.params.dep).replace("-", ' ');
+  const page = req.query.page;
+  const limit = req.query.limit;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
   product.find({ departmentd: a }).count(function (err, count) {
-    product.find({ departmentd: a }, function (err, found) {
+    product.find({ departmentd: a }, function (err, foundproduct) {
       Category.find({}, function (errcate, foundcategory) {
         allcategory = foundcategory;
-        res.render("shop-grid", { found: found, count: count });
+        const resulteproduct = foundproduct.slice(startIndex, endIndex);
+        res.render("shop-grid", { found: resulteproduct, count: resulteproduct.length, department: foundproduct[0].departmentd, countall: foundproduct.length });
       });
     });
   });
@@ -155,7 +160,7 @@ app.get('/shop-grid/:dep', function (req, res) {
 
 //add to cart product in session
 app.get('/add/:product', function (req, res) {
-  total = 0;
+  total1 = 0;
   cartlength1 = 0;
   product.findOne({ _id: req.params.product }, function (err, p) {
     if (err) {
@@ -196,22 +201,23 @@ app.get('/add/:product', function (req, res) {
     cart = req.session.cart;
     cart.forEach(function (product) {
       var qty = product.qy * product.price;
-      total = qty + total;
+      total1 = qty + total1;
     });
     cartlength1 = req.session.cart.length;
-    res.locals.total = total;
+    total = total1;
     res.redirect("/")
   });
 });
 
 //shoping-cart page
 app.get('/shoping-cart', function (req, res) {
-  Category.find({}, function (errcate, foundcategory) {
-    allcategory = foundcategory;
-    res.render('shoping-cart', { cart: req.session.cart });
+  product.find({}, function (err, foundprodct) {
+    Category.find({}, function (errcate, foundcategory) {
+      allcategory = foundcategory;
+      res.render('shoping-cart', { cart: req.session.cart, foundprodct: foundprodct });
+    });
   });
 });
-
 //delete all product in session
 app.get('/delete-cart', function (req, res) {
   req.session.cart = [];
@@ -246,7 +252,7 @@ app.get('/quantity/:id', function (req, res) {
       break;
     }
   }
-
+  console.log(addy);
   res.redirect("/shoping-cart");
 });
 

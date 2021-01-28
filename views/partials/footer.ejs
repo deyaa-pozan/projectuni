@@ -25,6 +25,13 @@
 <!--Sweetalert JS-->
 <script src="/js/sweetalert.min.js"></script>
 
+<!-- table_feedback -->
+<script>
+  $(document).ready(function () {
+    $('#table_feedback').DataTable();
+  });
+</script>
+
 <!--Product DataTable jQuery -->
 <script>
   $(document).ready(function () {
@@ -133,27 +140,35 @@
         }
       });
     });
-  });
+
+    
+    });
+
+
+ 
 </script>
 
-<!--Delete product jQuery -->
-<!-- <script>
+<!-- delete feedback -->
+<script>
   jQuery(document).ready(function ($) {
-    $(document).on('click', '.hidebutton', function (e) {
-      e.preventDefault();
-      var id= $(this).attr('id').slice(0, -1);
-      console.log(id+"00000000000");
-      $.ajax({
-        method: "post",
-        data: { id: id },
-        url: '/editrole/' + id,
-        success: function (data) {
-          $("#" + id+"1").hide();
-        }
-      });
-    });
+ 
+    $(document).on('click', '#deletefeedback', function (e) {
+            e.preventDefault();
+            const id = $(this).data('id');
+
+            $.ajax({
+                method: "GET",
+                data: { id: id },
+                url: '/deletefeedback/' + id,
+                success: function (data) {
+                    $("#" + id).remove()
+                }
+            });
+
+
+        });
   });
-</script> -->
+</script>
 
 <!-- Edit role admin  -->
 <script>

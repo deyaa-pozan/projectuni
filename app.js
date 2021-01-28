@@ -46,7 +46,8 @@ app.use(
   session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    
   })
 );
 
@@ -73,6 +74,7 @@ app.use(function (req, res, next) {
   res.locals.adminpage;
   res.locals.Neworder;
   res.locals.allcategory;
+  res.locals.total;
 
   next();
 

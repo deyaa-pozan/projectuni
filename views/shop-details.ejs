@@ -30,24 +30,15 @@
                         <h3>
                             <%=found.captiond%>
                         </h3>
-                        <div class="product__details__rating">
-                            <% for (var i=0; i < found.review; i++ ) { %>
 
-                                <i class="fa fa-star"></i>
-
-                                <%}%>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <span>(18 reviews)</span>
-                        </div>
-
-                        <div class="product__details__price">
+                        <div class="product__details__price priceitem<%=found._id %>">
                             <%=found.priced%>
                         </div>
                         <p>
                             <%=found.descriptiond%>
                         </p>
-                       
-                        
+
+
                         <a data-id="<%=found._id %>" id="add" href="/add/<%=found._id%>"
                             class="primary-btn <%=found._id %>">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
@@ -57,21 +48,14 @@
                                 </span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
 
-                            <li><b>Share on</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
-                
-                    </div>
-                </div>
-            
+
+            </div>
+        </div>
+
     </section>
     <!-- Product Details Section End -->
 
@@ -96,7 +80,7 @@
                             <div class="featured__item__pic set-bg" data-setbg="/<%=foundrelated[i].img[0]%>">
 
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <!-- <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
                                     <li><a href="/shop-details/<%=foundrelated[i]._id%>"><i class="fa fa-eye"></i></a>
                                     </li>
                                     <li><a href="/add/<%=foundrelated[i]._id%>"><i class="fa fa-shopping-cart"></i></a>
@@ -135,7 +119,7 @@
                             <div class="featured__item__pic set-bg" data-setbg="/<%=lastseen[i].image%>%>">
 
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <!-- <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
                                     <li><a href="/shop-details/<%=lastseen[i].barcode%>"><i class="fa fa-eye"></i></a>
                                     </li>
                                     <li><a href="/add/<%=lastseen[i].barcode%>"><i class="fa fa-shopping-cart"></i></a>
